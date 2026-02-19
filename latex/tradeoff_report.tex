@@ -1,0 +1,744 @@
+%!TEX program = xelatex
+% ─────────────────────────────────────────────────────────
+% MOEA/D 科研知识多目标权衡关系分析报告
+% 编译命令: xelatex tradeoff_report.tex
+% ─────────────────────────────────────────────────────────
+\documentclass[11pt, a4paper]{article}
+
+% ── 页面 ──────────────────────────────────────────────────
+\usepackage[a4paper,
+            top=22mm, bottom=20mm,
+            left=18mm, right=18mm,
+            headheight=15pt]{geometry}
+
+% ── 中文支持 ──────────────────────────────────────────────
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setCJKmainfont{PingFang SC}
+\setCJKmonofont{STKaiti}
+\setmainfont{Georgia}
+\setsansfont{Helvetica Neue}
+
+% ── 数学 ──────────────────────────────────────────────────
+\usepackage{amsmath, amssymb}
+
+% ── 颜色 ──────────────────────────────────────────────────
+\usepackage[dvipsnames, table, x11names]{xcolor}
+\definecolor{CBlue}  {HTML}{1565C0}
+\definecolor{CTeal}  {HTML}{00695C}
+\definecolor{CAmber} {HTML}{E65100}
+\definecolor{CPurple}{HTML}{6A1B9A}
+\definecolor{CRed}   {HTML}{C62828}
+\definecolor{CGreen} {HTML}{2E7D32}
+\definecolor{CGray}  {HTML}{546E7A}
+\definecolor{CLGray} {HTML}{ECEFF1}
+\definecolor{CDark}  {HTML}{212121}
+\definecolor{CPink}  {HTML}{AD1457}
+\definecolor{CBg}    {HTML}{E3F2FD}
+\definecolor{CBg2}   {HTML}{E8F5E9}
+\definecolor{CAmberL}{HTML}{FFF8E1}
+\definecolor{CRedL}  {HTML}{FCE4EC}
+\definecolor{CGreenL}{HTML}{E8F5E9}
+\definecolor{CPurpL} {HTML}{F3E5F5}
+\definecolor{CBlueL} {HTML}{E3F2FD}
+\definecolor{CBlueHdr}{HTML}{1A237E}
+
+% ── 图形 ──────────────────────────────────────────────────
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, calc, shapes.geometric,
+                decorations.pathreplacing, backgrounds, fit, matrix}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{pgfplotstable}
+
+% ── 表格 ──────────────────────────────────────────────────
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{longtable}
+
+% ── 排版 ──────────────────────────────────────────────────
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks=true, linkcolor=CBlue, urlcolor=CBlue,
+  pdftitle={MOEA/D 科研知识多目标权衡分析报告},
+  pdfauthor={MOEA/D × Claude 系统}
+}
+
+% ── 页眉页脚 ─────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{CGray} MOEA/D 科研知识多目标权衡分析报告}
+\fancyhead[R]{\small\color{CGray} 第 \thepage\ 页}
+\fancyfoot[C]{\small\color{CGray} MOEA/D $\times$ Claude $\cdot$ 跨学科长尾科研知识演化系统}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ── 标题样式 ──────────────────────────────────────────────
+\titleformat{\section}[block]
+  {\normalfont\large\bfseries\color{white}}
+  {}
+  {0pt}
+  {\colorbox{CBlue}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{#1}}}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+\titleformat{\subsection}[hang]
+  {\normalfont\normalsize\bfseries\color{CTeal}}
+  {\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{8pt}{3pt}
+
+% ── 表格列格式 ───────────────────────────────────────────
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% ── 节标题宏 ─────────────────────────────────────────────
+\newcommand{\secnum}[2]{%
+  \section*{\makebox[\linewidth][l]{%
+    \colorbox{CBlue}{\parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
+      \hspace{4pt}\textcolor{white}{\textbf{#1\quad #2}}\hspace{4pt}}}}}%
+  \vspace{-4pt}%
+}
+
+% ─────────────────────────────────────────────────────────
+\begin{document}
+% ─────────────────────────────────────────────────────────
+
+% ══════════════════════════════════
+% 封面
+% ══════════════════════════════════
+\thispagestyle{fancy}
+\vspace*{8mm}
+\begin{center}
+  {\LARGE\bfseries\color{CBlue} 科研长尾知识多目标权衡关系}\\[4pt]
+  {\Large\bfseries\color{CBlue} 深度分析报告}\\[8pt]
+  {\normalsize\color{CGray}
+    基于 MOEA/D $\times$ Claude 演化系统 $\cdot$ v2（7目标版）$+$ v3（可行性强化版）}\\[2pt]
+  {\normalsize\color{CGray}
+    样本量：65 个多样化长尾研究知识 $\cdot$ Pareto 解集：26 个}
+\end{center}
+\vspace{4pt}
+\noindent\textcolor{CLGray}{\rule{\linewidth}{1pt}}
+\vspace{4pt}
+
+% 摘要表
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{>{\bfseries\color{CDark}}L{3.8cm}
+                              C{1.6cm} C{1.6cm}
+                              >{\raggedright\arraybackslash\color{CDark}}X}
+  \rowcolor{CBlueHdr}
+  \textcolor{white}{\textbf{核心发现}} &
+  \textcolor{white}{\textbf{$r$ 值}} &
+  \textcolor{white}{\textbf{类型}} &
+  \textcolor{white}{\textbf{含义}} \\
+  \rowcolor{CGreenL}
+  可行性 $\leftrightarrow$ 合理性 & \textcolor{CGreen}{$+0.685$} & 强协同 &
+    验证轴：理论严密 $\Longleftrightarrow$ 方法可行 \\
+  \rowcolor{CRedL}
+  长尾度 $\leftrightarrow$ 可行性 & \textcolor{CRed}{$-0.502$} & 强对抗 &
+    最核心权衡：越小众越难落地 \\
+  \rowcolor{CRedL}
+  合理性 $\leftrightarrow$ 长尾度 & \textcolor{CRed}{$-0.489$} & 对抗 &
+    主流框架严密，但往往不够长尾 \\
+  \rowcolor{CAmberL}
+  前沿性 $\leftrightarrow$ 可行性 & \textcolor{CAmber}{$-0.447$} & 对抗 &
+    突破性想法领先于实验能力 \\
+  \rowcolor{CGreenL}
+  长尾度 $\leftrightarrow$ 前沿性 & \textcolor{CTeal}{$+0.325$} & 弱协同 &
+    探索轴：小众方向天然趋向前沿 \\
+  \rowcolor{CPurpL}
+  前沿性 $\leftrightarrow$ 合理性 & \textcolor{CPurple}{$-0.088$} & \textbf{独立} &
+    \textbf{★ 最反直觉：前沿不必牺牲严谨} \\
+\end{tabularx}
+\caption*{表~0\quad 核心发现摘要}
+\end{table}
+
+\vspace{2pt}
+\noindent\textcolor{CLGray}{\rule{\linewidth}{0.5pt}}
+
+% ══════════════════════════════════
+\secnum{01}{四目标结构：探索轴 vs 验证轴}
+% ══════════════════════════════════
+
+实验数据揭示出四个核心目标形成清晰的\textbf{二维拉力场}：
+\textcolor{CGreen}{长尾度}与\textcolor{CAmber}{前沿性}构成「探索轴」（正相关，$r=+0.33$）；
+\textcolor{CRed}{可行性}与\textcolor{CPink}{合理性}构成「验证轴」（强正相关，$r=+0.69$）。
+两轴之间存在系统性对抗关系。
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  node/.style={circle, minimum size=2.0cm, align=center,
+               font=\small\bfseries, text=white, inner sep=3pt},
+  synergy/.style={line width=2pt},
+  tension/.style={line width=1.8pt, dashed},
+  indep/.style={line width=1pt, dotted, CGray},
+]
+% 四节点
+\node[node, fill=CGreen!85!black]  (LT) at (-3.5, 1.2) {长尾度};
+\node[node, fill=CAmber]            (FR) at ( 3.5, 1.2) {前沿性};
+\node[node, fill=CRed]              (FE) at (-3.5,-1.2) {可行性};
+\node[node, fill=CPink]             (RI) at ( 3.5,-1.2) {合理性};
+
+% 探索轴（协同）
+\draw[synergy, CTeal]
+  (LT) -- (FR)
+  node[midway, above, font=\small\color{CTeal}] {$r=+0.33$}
+  node[midway, below, font=\scriptsize\color{CTeal}] {协同·探索轴};
+% 验证轴（强协同）
+\draw[synergy, CBlue, line width=2.5pt]
+  (FE) -- (RI)
+  node[midway, below, font=\small\color{CBlue}] {$r=+0.69$}
+  node[midway, above, font=\scriptsize\color{CBlue}] {强协同·验证轴};
+% 主对抗轴
+\draw[tension, CRed]
+  (LT) -- (FE)
+  node[midway, left, font=\small\color{CRed}] {$r=-0.50$};
+\draw[tension, CAmber]
+  (FR) -- (FE)
+  node[midway, right=2pt, font=\small\color{CAmber}] {$r=-0.45$};
+\draw[tension, CPurple]
+  (LT) to[bend left=15] (RI)
+  node[midway, above=6pt, font=\small\color{CPurple}] {$r=-0.49$};
+% 独立轴
+\draw[indep]
+  (FR) -- (RI)
+  node[midway, right, font=\small\color{CGray}] {$r=-0.09$（独立）};
+
+% 图例
+\begin{scope}[shift={(-4.8,-3.2)}]
+  \draw[CTeal, line width=2pt] (0,0) -- (1,0);
+  \node[right, font=\scriptsize, CDark] at (1.1,0) {协同};
+  \draw[CRed, line width=1.8pt, dashed] (2.8,0) -- (3.8,0);
+  \node[right, font=\scriptsize, CDark] at (3.9,0) {对抗};
+  \draw[CGray, dotted] (5.6,0) -- (6.6,0);
+  \node[right, font=\scriptsize, CDark] at (6.7,0) {独立};
+\end{scope}
+\end{tikzpicture}
+\caption{四目标结构关系示意图（线型/颜色代表关系类型）}
+\end{figure}
+
+% ══════════════════════════════════
+\secnum{02}{全目标相关系数热图（65个样本）}
+% ══════════════════════════════════
+
+热图展示7个目标两两之间的 Pearson 相关系数。深蓝=强正相关（协同），深红=强负相关（权衡），白色$\approx$独立。
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=11cm, height=11cm,
+  enlargelimits=false,
+  colormap={bluered}{
+    rgb255(0)=(198,40,40);
+    rgb255(45)=(255,255,255);
+    rgb255(100)=(21,101,192)
+  },
+  colorbar,
+  colorbar style={
+    ylabel={Pearson $r$},
+    ytick={-1,-0.5,0,0.5,1},
+  },
+  point meta min=-1, point meta max=1,
+  xtick={0,1,2,3,4,5,6},
+  ytick={0,1,2,3,4,5,6},
+  xticklabels={知识,社会,长尾,跨学,前沿,可行,合理},
+  yticklabels={知识,社会,长尾,跨学,前沿,可行,合理},
+  x tick label style={rotate=30, anchor=east, font=\small},
+  y tick label style={font=\small},
+  tick align=inside,
+  xlabel style={font=\small},
+  ylabel style={font=\small},
+]
+% 热图数据（行从 y=0→6 = 知识→合理）
+\addplot[matrix plot*, mesh/cols=7, point meta=explicit] table[meta=C] {
+  x y C
+  0 6  1.000
+  1 6  0.132
+  2 6 -0.125
+  3 6  0.015
+  4 6  0.553
+  5 6  0.105
+  6 6  0.580
+  0 5  0.132
+  1 5  1.000
+  2 5 -0.451
+  3 5 -0.045
+  4 5  0.051
+  5 5 -0.077
+  6 5  0.151
+  0 4 -0.125
+  1 4 -0.451
+  2 4  1.000
+  3 4  0.451
+  4 4  0.325
+  5 4 -0.502
+  6 4 -0.489
+  0 3  0.015
+  1 3 -0.045
+  2 3  0.451
+  3 3  1.000
+  4 3  0.371
+  5 3 -0.367
+  6 3 -0.266
+  0 2  0.553
+  1 2  0.051
+  2 2  0.325
+  3 2  0.371
+  4 2  1.000
+  5 2 -0.447
+  6 2 -0.088
+  0 1  0.105
+  1 1 -0.077
+  2 1 -0.502
+  3 1 -0.367
+  4 1 -0.447
+  5 1  1.000
+  6 1  0.685
+  0 0  0.580
+  1 0  0.151
+  2 0 -0.489
+  3 0 -0.266
+  4 0 -0.088
+  5 0  0.685
+  6 0  1.000
+};
+
+% 标注数值（只标注 |r| > 0.3 的）
+\pgfplotsset{every node near coord/.append style={font=\tiny}}
+\node[font=\tiny, white] at (axis cs:4,6) {$+0.55$};
+\node[font=\tiny, white] at (axis cs:6,6) {$+0.58$};
+\node[font=\tiny, white] at (axis cs:1,5) {$-0.45$};
+\node[font=\tiny, white] at (axis cs:2,4) {$+0.45$};
+\node[font=\tiny, white] at (axis cs:3,4) {$+0.33$};
+\node[font=\tiny, white] at (axis cs:5,4) {$-0.50$};
+\node[font=\tiny, white] at (axis cs:6,4) {$-0.49$};
+\node[font=\tiny       ] at (axis cs:2,3) {$+0.45$};
+\node[font=\tiny       ] at (axis cs:3,2) {$+0.37$};
+\node[font=\tiny       ] at (axis cs:5,2) {$-0.45$};
+\node[font=\tiny, white] at (axis cs:6,1) {$+0.69$};
+\node[font=\tiny, white] at (axis cs:5,1) {$-0.50$};
+\end{axis}
+\end{tikzpicture}
+\caption{7目标两两 Pearson 相关系数热图（深蓝=协同，深红=对抗）}
+\end{figure}
+
+% ══════════════════════════════════
+\secnum{03}{四象限分布：长尾度 $\times$ 可行性}
+% ══════════════════════════════════
+
+以\textbf{长尾度}（横轴）和\textbf{可行性}（纵轴）定义四象限。
+每个点的\textbf{颜色}代表合理性（红$\to$绿），\textbf{圆圈大小}代表前沿性。
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=12cm, height=8.5cm,
+  xmin=5.5, xmax=10.5, ymin=-0.5, ymax=10.5,
+  xlabel={长尾度},
+  ylabel={可行性},
+  xlabel style={font=\small},
+  ylabel style={font=\small},
+  tick label style={font=\small},
+  grid=none,
+  axis line style={CGray},
+]
+% 象限背景
+\fill[CAmberL, opacity=0.7]
+  (axis cs:5.5,5) rectangle (axis cs:8,10.5);
+\fill[CRedL, opacity=0.7]
+  (axis cs:8,5)   rectangle (axis cs:10.5,10.5);
+\fill[CGreenL, opacity=0.7]
+  (axis cs:5.5,-0.5) rectangle (axis cs:8,5);
+\fill[CPurpL, opacity=0.7]
+  (axis cs:8,-0.5)   rectangle (axis cs:10.5,5);
+
+% 象限标签
+\node[font=\scriptsize\color{CGray!70!black}, align=center]
+  at (axis cs:6.7,7.5) {低长尾+高可行\\成熟研究型};
+\node[font=\scriptsize\color{CGray!70!black}, align=center]
+  at (axis cs:9.3,7.5) {高长尾+高可行\\★黄金三角型};
+\node[font=\scriptsize\color{CGray!70!black}, align=center]
+  at (axis cs:6.7,2.0) {低长尾+低可行\\理论假说型};
+\node[font=\scriptsize\color{CGray!70!black}, align=center]
+  at (axis cs:9.3,2.0) {高长尾+低可行\\天马行空型};
+
+% 中位线
+\draw[CGray, dashed, thin] (axis cs:8,-0.5) -- (axis cs:8,10.5);
+\draw[CGray, dashed, thin] (axis cs:5.5,5)  -- (axis cs:10.5,5);
+
+% 散点（颜色=合理性 r/10，大小=前沿性）
+% 格式: \addplot[scatter, ...] coordinates {...};
+% 用不同颜色组模拟合理性渐变（低=红，中=橙，高=绿）
+% 合理性 3-4 (低)
+\addplot[only marks, mark=*, mark size=4pt,
+         mark options={fill=CRed!80!white, draw=white, line width=0.5pt}]
+  coordinates {
+    (10,1) (10,2) (10,2) (8,6) (8,6) (9,3) (10,3) (9,3)
+  };
+% 合理性 5-6 (中低)
+\addplot[only marks, mark=*, mark size=5pt,
+         mark options={fill=CAmber!80!white, draw=white, line width=0.5pt}]
+  coordinates {
+    (9,5) (9,4) (9,4) (9,6) (8,5) (9,4) (7,4) (8,6) (8,6)
+    (9,5) (9,5) (10,5) (9,5)
+  };
+% 合理性 6-7 (中高)
+\addplot[only marks, mark=*, mark size=6pt,
+         mark options={fill=CTeal!70!white, draw=white, line width=0.5pt}]
+  coordinates {
+    (9,9) (9,9) (9,7) (10,8) (9,6) (9,6) (9,8) (9,8)
+    (8,8) (9,6) (8,6) (8,7) (8,5) (9,6) (8,7) (8,7)
+    (9,6) (9,7) (9,7) (10,4) (9,3)
+  };
+% 合理性 7-8 (高)
+\addplot[only marks, mark=*, mark size=7pt,
+         mark options={fill=CGreen!80!black, draw=white, line width=0.5pt}]
+  coordinates {
+    (8,8) (8,9) (8,8) (9,8) (7,9) (9,8) (8,5)
+    (7,7) (7,9) (8,8) (9,6) (9,3) (8,8) (8,8)
+    (8,7) (7,8) (8,7) (8,8) (9,6) (8,7)
+  };
+
+\end{axis}
+\end{tikzpicture}
+
+\smallskip
+\noindent\hfill
+\begin{tikzpicture}[baseline=-3pt]
+  \fill[CRed!80!white]  (0,0) circle (4pt); \node[right, font=\scriptsize] at (5pt,0) {合理=3--4（低）};
+  \fill[CAmber!80!white](2cm,0) circle (5pt); \node[right, font=\scriptsize] at (2cm+6pt,0) {合理=5--6（中）};
+  \fill[CTeal!70!white] (4.2cm,0) circle (6pt); \node[right, font=\scriptsize] at (4.2cm+7pt,0) {合理=6--7（中高）};
+  \fill[CGreen!80!black](6.6cm,0) circle (7pt); \node[right, font=\scriptsize] at (6.6cm+8pt,0) {合理=7--8（高）};
+\end{tikzpicture}\hfill\null
+
+\caption{四象限散点图（颜色=合理性，圆圈大小=前沿性）}
+\end{figure}
+
+\begin{table}[H]
+\centering\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{L{2.8cm} C{2.2cm} C{1.2cm} C{1.8cm} C{1.8cm} X}
+  \rowcolor{CDark}
+  \textcolor{white}{\textbf{象限}} &
+  \textcolor{white}{\textbf{特征}} &
+  \textcolor{white}{\textbf{$n$}} &
+  \textcolor{white}{\textbf{前沿性均值}} &
+  \textcolor{white}{\textbf{合理性均值}} &
+  \textcolor{white}{\textbf{代表类型}} \\
+  \rowcolor{CAmberL}
+  高长尾+高可行 & 长尾$\geq$8.5, 可行$\geq$5 & 17 & 6.9 & 6.6 &
+    \textcolor{CAmber}{\textbf{★ 黄金三角型}} \\
+  \rowcolor{CRedL}
+  高长尾+低可行 & 长尾$\geq$8.5, 可行$<$5  & 21 & 7.8 & 5.3 & 天马行空型 \\
+  \rowcolor{CGreenL}
+  低长尾+高可行 & 长尾$<$8.5, 可行$\geq$5  & 21 & 6.8 & 7.0 & 成熟研究型 \\
+  \rowcolor{CPurpL}
+  低长尾+低可行 & 长尾$<$8.5, 可行$<$5     & 6  & 7.2 & 6.0 & 理论假说型 \\
+\end{tabularx}
+\caption{四象限统计（以长尾度/可行性中位数划分）}
+\end{table}
+
+% ══════════════════════════════════
+\secnum{04}{最反直觉发现：前沿性 $\leftrightarrow$ 合理性 独立（$r=-0.09$）}
+% ══════════════════════════════════
+
+\begin{minipage}[t]{0.48\linewidth}
+\vspace{0pt}
+\textbf{前沿性与合理性几乎不相关}（$r=-0.088$），与「大胆创新必然不严谨」的直觉相反。
+
+真正制约两者共存的是\textbf{可行性瓶颈}：高前沿$+$高合理的研究虽然概念上自洽，但当前技术往往无法同时撑起「新颖」$+$「可验证」。
+
+65个样本中只有\textbf{1个「理论圣杯型」}个体：
+
+\begin{center}
+\colorbox{CBlueL}{\parbox{0.85\linewidth}{\centering\small
+  \textcolor{CBlue}{\textbf{古DNA表观遗传印记重建}}\\
+  古遗传学$\times$表观基因组学\\[4pt]
+  \textcolor{CGreen}{长尾=9} \quad \textcolor{CAmber}{前沿=9} \quad
+  \textcolor{CRed}{可行=6} \quad \textcolor{CPink}{合理=8}
+}}
+\end{center}
+
+\vspace{4pt}
+这说明同时高前沿$+$高合理$+$高长尾是 \textbf{Pareto 极端点}，极其罕见但确实存在。
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\vspace{0pt}
+% 雷达图：三类典型画像
+\begin{tikzpicture}
+\begin{polaraxis}[
+  width=6.5cm, height=6.5cm,
+  xtick={0,90,180,270},
+  xticklabels={长尾度, 前沿性, 可行性, 合理性},
+  x tick label style={font=\small},
+  ymin=0, ymax=10,
+  ytick={2,4,6,8,10},
+  yticklabels={2,4,6,8,10},
+  y tick label style={font=\scriptsize, color=CGray},
+  grid=both,
+  grid style={thin, CLGray},
+  axis line style={CGray},
+]
+% A类: 天马行空型
+\addplot[CRed, line width=1.5pt, mark=*, mark size=2pt,
+         mark options={fill=CRed}]
+  coordinates {(0,9.5)(90,8)(180,2)(270,4.5)(360,9.5)};
+% B类: 黄金三角型
+\addplot[CAmber!80!black, line width=1.5pt, mark=square*, mark size=2pt,
+         mark options={fill=CAmber}]
+  coordinates {(0,8)(90,6.5)(180,8.5)(270,7.5)(360,8)};
+% C类: 理论圣杯型
+\addplot[CBlue, line width=2pt, mark=diamond*, mark size=2.5pt,
+         mark options={fill=CBlue}]
+  coordinates {(0,9)(90,9)(180,6)(270,8)(360,9)};
+\end{polaraxis}
+\end{tikzpicture}
+
+\vspace{2pt}
+{\scriptsize
+\textcolor{CRed}{$\bullet$} A类·天马行空型\quad
+\textcolor{CAmber}{$\blacksquare$} B类·黄金三角型\quad
+\textcolor{CBlue}{$\blacklozenge$} C类·理论圣杯型}
+\end{minipage}
+
+\captionof{figure}{三类典型研究画像雷达对比（四维：长尾/前沿/可行/合理）}
+
+\vspace{6pt}
+
+% ══════════════════════════════════
+\secnum{05}{v3 演化趋势（6代·四目标均值）}
+% ══════════════════════════════════
+
+强化约束算法（v3）运行6代的四目标均值演化曲线。
+实线=强化目标（可行性/合理性），虚线=被动调整目标（长尾度/前沿性）。
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  width=13cm, height=6cm,
+  xmin=-0.2, xmax=6.2,
+  ymin=4.5, ymax=9.5,
+  xlabel={演化代数},
+  ylabel={均值（分）},
+  xlabel style={font=\small},
+  ylabel style={font=\small},
+  tick label style={font=\small},
+  xtick={0,1,2,3,4,5,6},
+  xticklabels={第0代,第1代,第2代,第3代,第4代,第5代,第6代},
+  x tick label style={rotate=20, anchor=east, font=\scriptsize},
+  ytick={5,6,7,8,9},
+  legend pos=outer north east,
+  legend style={font=\small, row sep=1pt},
+  grid=major,
+  grid style={thin, CLGray},
+]
+% 长尾度
+\addplot[CGreen!80!black, dashed, line width=1.5pt, mark=o, mark size=3pt,
+         mark options={fill=CGreen!80!black}]
+  coordinates {(0,8.45)(1,8.30)(2,8.35)(3,8.15)(4,8.35)(5,8.30)(6,8.30)};
+\addlegendentry{长尾度}
+% 前沿性
+\addplot[CAmber, dashed, line width=1.5pt, mark=square, mark size=3pt,
+         mark options={fill=CAmber}]
+  coordinates {(0,6.60)(1,6.60)(2,6.90)(3,7.15)(4,7.35)(5,7.35)(6,7.50)};
+\addlegendentry{前沿性}
+% 可行性
+\addplot[CRed, line width=2pt, mark=*, mark size=3pt,
+         mark options={fill=CRed}]
+  coordinates {(0,7.65)(1,7.30)(2,7.85)(3,7.55)(4,7.40)(5,7.40)(6,7.35)};
+\addlegendentry{可行性（强化）}
+% 合理性
+\addplot[CPink, line width=2pt, mark=diamond*, mark size=3pt,
+         mark options={fill=CPink}]
+  coordinates {(0,7.25)(1,6.65)(2,6.75)(3,6.75)(4,6.90)(5,6.85)(6,7.00)};
+\addlegendentry{合理性（强化）}
+\end{axis}
+\end{tikzpicture}
+\caption{v3 四目标均值演化趋势（第0代=初始种群）}
+\end{figure}
+
+% ══════════════════════════════════
+\secnum{06}{算法改进代价分析：v2 vs v3}
+% ══════════════════════════════════
+
+通过强制提升可行性$+$合理性（v3），演化方向从「宇宙量子假说」漂移到「冰川微生物基因组、古DNA表观遗传」等可落地方向。代价是长尾度和前沿性各降约0.7分。
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+  ybar=3pt,
+  width=11cm, height=6cm,
+  bar width=14pt,
+  ymin=2, ymax=11,
+  ytick={4,6,8,10},
+  ylabel={均值（分）},
+  ylabel style={font=\small},
+  symbolic x coords={长尾度, 前沿性, 可行性, 合理性},
+  xtick=data,
+  x tick label style={font=\normalsize},
+  tick label style={font=\small},
+  legend style={at={(0.98,0.98)}, anchor=north east, font=\small},
+  grid=major,
+  grid style={thin, CLGray},
+  nodes near coords,
+  nodes near coords style={font=\scriptsize, anchor=south},
+  every node near coord/.append style={yshift=2pt},
+]
+% v2
+\addplot[fill=CBlue!25!white, draw=CBlue!60!white, line width=0.5pt]
+  coordinates {(长尾度,9.1)(前沿性,8.2)(可行性,4.7)(合理性,5.9)};
+\addlegendentry{v2（无约束）}
+% v3
+\addplot[fill=CTeal, draw=CTeal!80!black, line width=0.5pt]
+  coordinates {(长尾度,8.3)(前沿性,7.5)(可行性,7.4)(合理性,7.0)};
+\addlegendentry{v3（强化约束）}
+\end{axis}
+\end{tikzpicture}
+\caption{v2 vs v3 四目标均值对比柱状图（深色=v3，浅色=v2）}
+\end{figure}
+
+\begin{table}[H]
+\centering\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{L{2.4cm} C{1.8cm} C{1.8cm} C{1.6cm} X}
+  \rowcolor{CDark}
+  \textcolor{white}{\textbf{维度}} &
+  \textcolor{white}{\textbf{v2 无约束}} &
+  \textcolor{white}{\textbf{v3 强化}} &
+  \textcolor{white}{\textbf{变化}} &
+  \textcolor{white}{\textbf{解读}} \\
+  \rowcolor{CGreenL}
+  长尾度均值 & 9.1 & 8.3 & $-0.8$ & 略有下降，长尾性仍很高 \\
+  \rowcolor{CGreenL}
+  前沿性均值 & 8.2 & 7.5 & $-0.7$ & 轻微代价，仍属高前沿 \\
+  \rowcolor{CBlueL}
+  可行性均值 & 4.7 & 7.4 & \textcolor{CGreen}{\textbf{$+2.7$ ★}} & 大幅提升，核心改进目标 \\
+  \rowcolor{CBlueL}
+  合理性均值 & 5.9 & 7.0 & \textcolor{CGreen}{\textbf{$+1.1$ ★}} & 显著提升，理论基础更扎实 \\
+  \rowcolor{CLGray}
+  综合均值   & 7.1 & 7.4 & $+0.3$ & 整体质量提升 \\
+  \rowcolor{CLGray}
+  Pareto 解数 & 17 & 9   & $-8$   & 约束收紧，解集规模缩小 \\
+  \rowcolor{CLGray}
+  代表研究方向 & \multicolumn{2}{c}{暗物质拓扑 $\to$ 古DNA表观遗传}
+              & --- & 从纯理论转向可实验验证 \\
+\end{tabularx}
+\caption{v2 与 v3 最终种群关键指标对比}
+\end{table}
+
+% ══════════════════════════════════
+\secnum{07}{Pareto 最优解：各目标极值代表}
+% ══════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\linewidth}{
+  L{1.8cm} L{4.4cm} L{4.0cm}
+  C{1cm} C{1cm} C{1cm} C{1cm} C{1cm} C{1cm}}
+  \rowcolor{CDark}
+  \textcolor{white}{\textbf{类型}} &
+  \textcolor{white}{\textbf{研究主题}} &
+  \textcolor{white}{\textbf{领域}} &
+  \textcolor{white}{\textbf{长尾}} &
+  \textcolor{white}{\textbf{前沿}} &
+  \textcolor{white}{\textbf{可行}} &
+  \textcolor{white}{\textbf{合理}} &
+  \textcolor{white}{\textbf{知识}} &
+  \textcolor{white}{\textbf{社会}} \\
+  \rowcolor{CGreenL}
+  \textcolor{CGreen}{\textbf{最高长尾}} &
+  暗物质核反冲驱动的拓扑光子芯片纠错增强 &
+  暗物质量子光子拓扑学 &
+  10 & 10 & 2 & 4 & 7 & 6 \\
+  \rowcolor{CAmberL}
+  \textcolor{CAmber}{\textbf{最高前沿}} &
+  暗物质核反冲驱动的拓扑光子芯片纠错增强 &
+  暗物质量子光子拓扑学 &
+  10 & 10 & 2 & 4 & 7 & 6 \\
+  \rowcolor{CRedL}
+  \textcolor{CRed}{\textbf{最高可行}} &
+  工业废水中的定向进化实验 &
+  环境微生物学--合成生物学 &
+  7 & 7 & 9 & 8 & 8 & 6 \\
+  \rowcolor{CBlueL}
+  \textcolor{CPink}{\textbf{最高合理}} &
+  古DNA中的表观遗传印记重建 &
+  古遗传学--表观基因组学 &
+  9 & 9 & 6 & 8 & 9 & 6 \\
+\end{tabularx}
+\caption{Pareto 前沿中各目标极值代表个体}
+\end{table}
+
+% ══════════════════════════════════
+\secnum{08}{核心结论与科研选题启示}
+% ══════════════════════════════════
+
+\begin{table}[H]
+\centering\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\linewidth}{C{0.5cm} L{2.2cm} X}
+  \rowcolor{CDark}
+  \textcolor{white}{\textbf{\#}} &
+  \textcolor{white}{\textbf{维度}} &
+  \textcolor{white}{\textbf{结论}} \\
+  \rowcolor{CRedL}
+  \textbf{\textcircled{\small 1}} &
+  \textcolor{CRed}{\textbf{最核心权衡}} &
+  长尾度 $\leftrightarrow$ 可行性（$r=-0.50$）是整个系统中最难同时满足的对立关系。越小众的研究方向，越缺乏现成技术支撑——这是长尾知识的本质张力。\\
+  \rowcolor{CBlueL}
+  \textbf{\textcircled{\small 2}} &
+  \textcolor{CBlue}{\textbf{验证轴统一}} &
+  可行性与合理性高度协同（$r=+0.69$），应作为整体「可研究性」评估，而非独立权衡。扎实的理论假设本身就需要具体实验设计来支撑。\\
+  \rowcolor{CPurpL}
+  \textbf{\textcircled{\small 3}} &
+  \textcolor{CPurple}{\textbf{最反直觉}} &
+  前沿性与合理性几乎独立（$r=-0.09$）。制约「高前沿$+$高合理」共存的真正瓶颈是可行性不足，而非两者之间的内在矛盾。\\
+  \rowcolor{CAmberL}
+  \textbf{\textcircled{\small 4}} &
+  \textcolor{CAmber}{\textbf{黄金选题策略}} &
+  寻找「当前技术刚好够得着的前沿」——即C类「理论圣杯型」研究。65个样本中仅1例（古DNA表观遗传印记重建），极其稀有但具有最高综合价值。\\
+  \rowcolor{CGreenL}
+  \textbf{\textcircled{\small 5}} &
+  \textcolor{CGreen}{\textbf{算法揭示真实代价}} &
+  强制提升可行性/合理性（v3）使两目标均值提升 $+1.1\sim+2.7$ 分，但长尾度/前沿性各损失约0.7分。这个代价真实且不可避免——除非找到C类研究方向。\\
+\end{tabularx}
+\caption{核心结论与科研选题启示（共5条）}
+\end{table}
+
+\vspace{6pt}
+\noindent\textcolor{CLGray}{\rule{\linewidth}{0.5pt}}
+\begin{center}
+  \small\color{CGray}
+  数据来源：MOEA/D $\times$ Claude-sonnet-4-5 演化系统 $\cdot$
+  v2（7目标，种群=20，10代）$+$ v3（强化约束，种群=20，6代）\\
+  样本数：65 $\cdot$ Pearson 相关系数，双侧检验
+\end{center}
+
+\end{document}
