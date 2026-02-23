@@ -1,0 +1,707 @@
+{
+  "gen": 0,
+  "population": [
+    {
+      "option_id": "ntu_liuyang",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "NTU",
+        "advisor_or_team": "刘洋",
+        "location": "Singapore"
+      },
+      "research_route": {
+        "year1_focus": "将U2E自动算法进化系统应用于网络安全领域，开发鲁棒性验证工具，结合图神经网络分析攻击模式。",
+        "year2_focus": "扩展至AI公平性研究，利用多目标优化平衡安全与公平指标，发表高影响力论文并开源工具。",
+        "key_outputs": [
+          "网络安全鲁棒性验证框架论文（顶会）",
+          "AI公平性多目标优化算法",
+          "开源安全分析工具包",
+          "跨领域合作项目成果"
+        ],
+        "continuity_from_background": "延续U2E自动优化和GNN经验，应用于新领域网络安全与公平性。"
+      },
+      "career_path": {
+        "exit_options": [
+          "教职",
+          "大厂安全研究",
+          "AI伦理顾问"
+        ],
+        "pros": [
+          "网络安全需求旺盛，职业前景广阔",
+          "新加坡地理位置优越，利于亚洲合作"
+        ],
+        "cons": [
+          "需快速学习网络安全领域知识"
+        ],
+        "risk_level": "medium"
+      },
+      "scores": [
+        8.0,
+        7.0,
+        6.0,
+        7.0,
+        8.0,
+        8.0,
+        5.0,
+        7.0,
+        7.0,
+        6.0,
+        7.0
+      ]
+    },
+    {
+      "option_id": "ntu_boan",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "NTU",
+        "advisor_or_team": "安波",
+        "location": "Singapore"
+      },
+      "research_route": {
+        "year1_focus": "应用多目标优化与进化算法于多智能体强化学习，优化博弈策略，解决资源分配等实际问题。",
+        "year2_focus": "深化智能体协作与对抗研究，结合因果推理提升系统可解释性，推动工业界应用。",
+        "key_outputs": [
+          "多智能体优化算法顶会论文",
+          "开源多智能体仿真平台",
+          "工业合作案例研究",
+          "专利或技术报告"
+        ],
+        "continuity_from_background": "直接延续张青富导师的多目标优化专长，结合已有强化学习合作经验。"
+      },
+      "career_path": {
+        "exit_options": [
+          "教职",
+          "大厂AI研究",
+          "金融科技公司"
+        ],
+        "pros": [
+          "安波教授声誉高，合作紧密",
+          "多智能体领域应用广泛，易转化"
+        ],
+        "cons": [
+          "竞争激烈，需突出创新性"
+        ],
+        "risk_level": "low"
+      },
+      "scores": [
+        9.0,
+        8.0,
+        7.0,
+        8.0,
+        7.0,
+        9.0,
+        4.0,
+        7.0,
+        6.0,
+        7.0,
+        8.0
+      ]
+    },
+    {
+      "option_id": "stanford_lecong",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "Stanford",
+        "advisor_or_team": "丛乐",
+        "location": "USA"
+      },
+      "research_route": {
+        "year1_focus": "利用U2E系统优化基因编辑实验设计，结合单细胞数据开发ML模型预测编辑效率与脱靶效应。",
+        "year2_focus": "扩展至蛋白质/RNA设计，应用进化算法自动生成优化序列，推动生物医学应用。",
+        "key_outputs": [
+          "基因编辑优化方法顶刊论文",
+          "蛋白质设计开源工具",
+          "跨学科合作成果",
+          "专利申请或预印本"
+        ],
+        "continuity_from_background": "延续U2E自动优化在组学领域的成功，应用于基因编辑和生物分子设计。"
+      },
+      "career_path": {
+        "exit_options": [
+          "教职",
+          "生物科技公司",
+          "医药企业AI部门"
+        ],
+        "pros": [
+          "生物AI交叉领域前沿，创新空间大",
+          "斯坦福资源丰富，利于跨学科合作"
+        ],
+        "cons": [
+          "需快速学习分子生物学知识"
+        ],
+        "risk_level": "high"
+      },
+      "scores": [
+        7.0,
+        9.0,
+        7.0,
+        9.0,
+        8.0,
+        7.0,
+        6.0,
+        8.0,
+        7.0,
+        9.0,
+        9.0
+      ]
+    },
+    {
+      "option_id": "stanford_qiu",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "Stanford",
+        "advisor_or_team": "仇夏婕",
+        "location": "USA"
+      },
+      "research_route": {
+        "year1_focus": "结合单细胞数据与可微分深度学习，优化发育轨迹推断模型，应用图网络分析细胞关系。",
+        "year2_focus": "开发自动化分析流程，集成Eureka系统辅助论文生成，提升计算生物学研究效率。",
+        "key_outputs": [
+          "单细胞轨迹推断新方法顶刊论文",
+          "可微分深度学习工具包",
+          "自动化生物数据分析系统",
+          "合作项目应用案例"
+        ],
+        "continuity_from_background": "延续单细胞合作经验，结合GNN和Eureka系统，深化计算生物学研究。"
+      },
+      "career_path": {
+        "exit_options": [
+          "教职",
+          "生物信息公司",
+          "医疗AI初创"
+        ],
+        "pros": [
+          "已有合作基础，上手快",
+          "计算生物学需求增长，职业选择多样"
+        ],
+        "cons": [
+          "领域较专，可能限制广度"
+        ],
+        "risk_level": "medium"
+      },
+      "scores": [
+        8.0,
+        7.0,
+        6.0,
+        8.0,
+        6.0,
+        9.0,
+        4.0,
+        7.0,
+        6.0,
+        6.0,
+        7.0
+      ]
+    },
+    {
+      "option_id": "stanford_jure",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "Stanford",
+        "advisor_or_team": "Jure Leskovec",
+        "location": "USA"
+      },
+      "research_route": {
+        "year1_focus": "深化图神经网络研究，结合多目标优化改进PyG框架，应用于社会网络分析或药物发现。",
+        "year2_focus": "探索因果图网络与GNN融合，开发可解释模型，推动在医疗等领域的实际应用。",
+        "key_outputs": [
+          "GNN优化方法顶会论文",
+          "PyG框架贡献或扩展",
+          "药物发现合作项目",
+          "开源图学习工具"
+        ],
+        "continuity_from_background": "直接延续一作GNN论文经验，结合优化专长提升图学习性能。"
+      },
+      "career_path": {
+        "exit_options": [
+          "教职",
+          "大厂图学习团队",
+          "初创公司CTO"
+        ],
+        "pros": [
+          "Jure是图学习领军人物，资源极佳",
+          "图学习应用广泛，易获工业界关注"
+        ],
+        "cons": [
+          "团队竞争强，需快速产出"
+        ],
+        "risk_level": "low"
+      },
+      "scores": [
+        9.0,
+        10.0,
+        8.0,
+        9.0,
+        7.0,
+        6.0,
+        7.0,
+        8.0,
+        7.0,
+        8.0,
+        10.0
+      ]
+    },
+    {
+      "option_id": "stanford_jameszou",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "Stanford",
+        "advisor_or_team": "James Zou",
+        "location": "USA"
+      },
+      "research_route": {
+        "year1_focus": "应用多目标优化于可信AI研究，开发公平性评估与改进算法，结合医疗数据验证有效性。",
+        "year2_focus": "扩展至Data Shapley等可解释性方法，集成Eureka系统自动化论文实验，提升研究效率。",
+        "key_outputs": [
+          "可信AI优化方法顶会论文",
+          "医疗公平性案例研究",
+          "自动化评估工具",
+          "跨领域合作出版物"
+        ],
+        "continuity_from_background": "延续长尾学习和因果图网络经验，结合优化与Eureka系统，聚焦AI伦理。"
+      },
+      "career_path": {
+        "exit_options": [
+          "教职",
+          "大厂AI伦理团队",
+          "政策研究机构"
+        ],
+        "pros": [
+          "可信AI是热点，社会影响大",
+          "斯坦福平台利于建立学术声誉"
+        ],
+        "cons": [
+          "领域较新，职业路径可能不稳定"
+        ],
+        "risk_level": "medium"
+      },
+      "scores": [
+        7.0,
+        8.0,
+        7.0,
+        8.0,
+        7.0,
+        7.0,
+        5.0,
+        9.0,
+        7.0,
+        8.0,
+        8.0
+      ]
+    },
+    {
+      "option_id": "industry_deepmind",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "DeepMind",
+        "advisor_or_team": "Multi-Objective Optimization Team",
+        "location": "London, UK"
+      },
+      "research_route": {
+        "year1_focus": "Integrate U2E system with DeepMind's reinforcement learning frameworks for automated algorithm design in complex environments",
+        "year2_focus": "Develop novel evolutionary algorithms for multi-agent systems and apply to real-world optimization problems in robotics or healthcare",
+        "key_outputs": [
+          "High-impact publications in NeurIPS/ICML",
+          "Patents for automated optimization systems",
+          "Deployed algorithms in internal projects"
+        ],
+        "continuity_from_background": "Direct application of multi-objective optimization expertise from USTC/CityU, leveraging automated algorithm development experience from U2E system"
+      },
+      "career_path": {
+        "exit_options": [
+          "Senior Research Scientist at DeepMind",
+          "AI Research Lead at other tech giants",
+          "Faculty position at top universities"
+        ],
+        "pros": [
+          "Access to massive computational resources",
+          "Collaboration with world-class researchers",
+          "Strong publication culture",
+          "High compensation"
+        ],
+        "cons": [
+          "Intense competition for promotions",
+          "Less academic freedom than universities",
+          "Potential project alignment issues"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        9.0,
+        9.0,
+        9.0,
+        10.0,
+        8.0,
+        5.0,
+        8.0,
+        9.0,
+        6.0,
+        8.0,
+        9.0
+      ]
+    },
+    {
+      "option_id": "industry_anthropic",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "Anthropic",
+        "advisor_or_team": "AI Safety and Alignment Research",
+        "location": "San Francisco, USA"
+      },
+      "research_route": {
+        "year1_focus": "Apply causal graph networks and long-tail learning techniques to improve AI safety and robustness in large language models",
+        "year2_focus": "Develop evolutionary approaches for automatically discovering safety constraints and alignment mechanisms in AI systems",
+        "key_outputs": [
+          "Safety frameworks for next-gen AI models",
+          "Publications in top AI conferences",
+          "Open-source safety tools"
+        ],
+        "continuity_from_background": "Builds on causal graph network and long-tail learning publications, extends automated research systems experience from Stanford Eureka project"
+      },
+      "career_path": {
+        "exit_options": [
+          "Research Lead at Anthropic",
+          "AI Safety Director at other AI companies",
+          "Policy or research roles in AI governance"
+        ],
+        "pros": [
+          "Work on cutting-edge AI safety problems",
+          "Fast-growing company with significant impact potential",
+          "Strong research publication support"
+        ],
+        "cons": [
+          "Narrower research focus than academia",
+          "Startup-like environment with uncertainties",
+          "Limited geographic mobility options"
+        ],
+        "risk_level": "Medium-High"
+      },
+      "scores": [
+        7.0,
+        8.0,
+        8.0,
+        7.0,
+        7.0,
+        6.0,
+        7.0,
+        10.0,
+        6.0,
+        8.0,
+        8.0
+      ]
+    },
+    {
+      "option_id": "china_alibaba",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "Alibaba DAMO Academy",
+        "advisor_or_team": "Machine Intelligence Lab",
+        "location": "Hangzhou, China"
+      },
+      "research_route": {
+        "year1_focus": "Apply graph neural networks and evolutionary algorithms to optimize Alibaba's e-commerce recommendation systems and supply chain logistics",
+        "year2_focus": "Develop automated machine learning systems for business applications, extending U2E approach to commercial optimization problems",
+        "key_outputs": [
+          "High-performance algorithms deployed in Alibaba platforms",
+          "Publications in top conferences",
+          "Technology patents"
+        ],
+        "continuity_from_background": "Direct application of graph neural network and evolutionary algorithm expertise, leveraging automated system development experience"
+      },
+      "career_path": {
+        "exit_options": [
+          "Technical Director at Alibaba",
+          "Chief Scientist at other Chinese tech companies",
+          "Entrepreneurship in AI startups"
+        ],
+        "pros": [
+          "Access to massive real-world datasets",
+          "Strong connections to Chinese AI ecosystem",
+          "Good work-life balance compared to US tech companies"
+        ],
+        "cons": [
+          "Less international recognition than US companies",
+          "Potential language and cultural barriers for international candidates",
+          "Slower research-to-production pipeline"
+        ],
+        "risk_level": "Low-Medium"
+      },
+      "scores": [
+        8.0,
+        7.0,
+        8.0,
+        9.0,
+        7.0,
+        8.0,
+        6.0,
+        7.0,
+        8.0,
+        6.0,
+        7.0
+      ]
+    },
+    {
+      "option_id": "china_zhipu",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "Zhipu AI",
+        "advisor_or_team": "Foundation Model Research Team",
+        "location": "Beijing, China"
+      },
+      "research_route": {
+        "year1_focus": "Apply multi-objective optimization techniques to improve training efficiency and performance of large language models",
+        "year2_focus": "Develop automated research systems for foundation model development, extending Eureka paper generation approach to AI research automation",
+        "key_outputs": [
+          "Improved training algorithms for LLMs",
+          "Automated research tools for AI development",
+          "Publications in top AI venues"
+        ],
+        "continuity_from_background": "Builds on automated research system experience from Stanford Eureka, applies optimization expertise to cutting-edge foundation model development"
+      },
+      "career_path": {
+        "exit_options": [
+          "Research Director at Zhipu",
+          "AI Research roles at other Chinese AI companies",
+          "Academic positions with industry connections"
+        ],
+        "pros": [
+          "Work on forefront of Chinese AI development",
+          "Fast career progression in growing company",
+          "Strong publication opportunities"
+        ],
+        "cons": [
+          "Intense competition in Chinese AI sector",
+          "Geographic limitations for international mobility",
+          "Potential IP ownership complexities"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        8.0,
+        7.0,
+        8.0,
+        8.0,
+        8.0,
+        7.0,
+        7.0,
+        9.0,
+        7.0,
+        7.0,
+        8.0
+      ]
+    },
+    {
+      "option_id": "us_mit",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "MIT",
+        "advisor_or_team": "Prof. Tommi Jaakkola (Machine Learning Group)",
+        "location": "Cambridge, USA"
+      },
+      "research_route": {
+        "year1_focus": "Develop theoretical foundations for evolutionary algorithms in high-dimensional optimization, with applications to neural architecture search",
+        "year2_focus": "Extend causal graph networks to improve interpretability and robustness of deep learning models",
+        "key_outputs": [
+          "Theoretical papers in JMLR/NeurIPS",
+          "Open-source optimization libraries",
+          "Collaborations with MIT industry partners"
+        ],
+        "continuity_from_background": "Builds on strong publication record in top venues, extends optimization expertise with theoretical depth, leverages graph network experience"
+      },
+      "career_path": {
+        "exit_options": [
+          "Tenure-track faculty at research universities",
+          "Senior researcher at top AI labs",
+          "Research scientist at hedge funds or tech companies"
+        ],
+        "pros": [
+          "World-class research environment",
+          "Strong mentorship from leading researcher",
+          "Excellent academic network for future career"
+        ],
+        "cons": [
+          "Temporary position with uncertain long-term prospects",
+          "Lower compensation than industry",
+          "Intense pressure to produce high-impact work"
+        ],
+        "risk_level": "Low"
+      },
+      "scores": [
+        8.0,
+        10.0,
+        6.0,
+        8.0,
+        8.0,
+        5.0,
+        8.0,
+        7.0,
+        6.0,
+        9.0,
+        10.0
+      ]
+    },
+    {
+      "option_id": "us_cmu",
+      "type": "faculty",
+      "anchor": {
+        "institution_or_company": "Carnegie Mellon University",
+        "advisor_or_team": "Machine Learning Department (Tenure-track Assistant Professor)",
+        "location": "Pittsburgh, USA"
+      },
+      "research_route": {
+        "year1_focus": "Establish research program on automated machine learning systems, combining evolutionary algorithms with neural architecture search",
+        "year2_focus": "Develop interdisciplinary applications in computational biology and scientific discovery, leveraging optimization expertise",
+        "key_outputs": [
+          "Grant funding from NSF/DARPA",
+          "PhD student recruitment and mentoring",
+          "High-impact publications in top venues"
+        ],
+        "continuity_from_background": "Direct continuation of automated algorithm development work from PhD, builds on strong publication record, leverages interdisciplinary experience from omics/PDE work"
+      },
+      "career_path": {
+        "exit_options": [
+          "Tenured professor at CMU",
+          "Research leadership roles in industry",
+          "Director of academic research centers"
+        ],
+        "pros": [
+          "Academic freedom to pursue long-term research agenda",
+          "Opportunity to build own research group",
+          "Prestigious position with job security after tenure"
+        ],
+        "cons": [
+          "High pressure for tenure requirements",
+          "Substantial teaching and service responsibilities",
+          "Lower initial compensation than industry"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        9.0,
+        10.0,
+        10.0,
+        8.0,
+        9.0,
+        4.0,
+        9.0,
+        8.0,
+        7.0,
+        9.0,
+        10.0
+      ]
+    },
+    {
+      "option_id": "china_alibaba_damo",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "阿里巴巴达摩院",
+        "advisor_or_team": "机器智能实验室（AI for Science方向）",
+        "location": "中国杭州"
+      },
+      "research_route": {
+        "year1_focus": "将多目标优化与进化算法应用于AI for Science项目，如生物组学数据分析或偏微分方程求解的自动化算法设计，开发类似U2E的工业级系统",
+        "year2_focus": "主导长尾学习或图神经网络在电商推荐、金融风控等场景的落地，结合因果推理提升模型可解释性",
+        "key_outputs": [
+          "顶会论文（如NeurIPS、ICML）",
+          "专利或开源工具",
+          "高影响力业务解决方案"
+        ],
+        "continuity_from_background": "延续博士期间的多目标优化、进化算法及AI for Science经验，并拓展至工业场景；利用一作顶会记录快速融入团队"
+      },
+      "career_path": {
+        "exit_options": [
+          "晋升为达摩院高级科学家",
+          "转至阿里云或其他业务部门担任技术负责人",
+          "创业或加入其他AI公司"
+        ],
+        "pros": [
+          "资源丰富，能接触海量数据与算力",
+          "国内顶尖AI研究平台，职业发展稳定",
+          "薪资待遇优厚，福利完善"
+        ],
+        "cons": [
+          "可能面临业务压力，纯研究时间受限",
+          "国内竞争激烈，晋升通道较窄",
+          "国际化视野相对受限"
+        ],
+        "risk_level": "低"
+      },
+      "scores": [
+        9.0,
+        7.0,
+        8.0,
+        9.0,
+        7.0,
+        8.0,
+        6.0,
+        7.0,
+        8.0,
+        6.0,
+        7.0
+      ]
+    },
+    {
+      "option_id": "us_mit_leskovec",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "麻省理工学院（MIT）",
+        "advisor_or_team": "Jure Leskovec教授实验室（图神经网络与因果推理方向）",
+        "location": "美国马萨诸塞州剑桥"
+      },
+      "research_route": {
+        "year1_focus": "深化图神经网络与因果图网络的理论研究，结合进化算法优化模型架构，应用于生物信息学或社交网络分析",
+        "year2_focus": "开发自动化科研工具，扩展Eureka论文生成系统至多模态数据或跨领域验证，产出高质量学术论文",
+        "key_outputs": [
+          "顶会论文（如NeurIPS、ICML）",
+          "开源代码库",
+          "与斯坦福等机构的合作项目"
+        ],
+        "continuity_from_background": "直接衔接一作论文中的图神经网络、因果图网络专长；利用斯坦福合作经验快速适应美国顶尖学术环境；延续自动化科研工具开发兴趣"
+      },
+      "career_path": {
+        "exit_options": [
+          "申请美国或全球其他高校的教职（如助理教授）",
+          "加入美国科技公司（如Google Brain、Meta AI）",
+          "回国担任高校研究员或企业首席科学家"
+        ],
+        "pros": [
+          "世界顶级研究环境，导师声誉高",
+          "学术自由度大，利于长期职业发展",
+          "国际化网络丰富，合作机会多"
+        ],
+        "cons": [
+          "博士后薪资相对较低，生活成本高",
+          "教职市场竞争激烈，不确定性较大",
+          "签证与移民政策可能带来挑战"
+        ],
+        "risk_level": "中"
+      },
+      "scores": [
+        9.0,
+        10.0,
+        7.0,
+        9.0,
+        8.0,
+        5.0,
+        8.0,
+        8.0,
+        7.0,
+        9.0,
+        10.0
+      ]
+    }
+  ],
+  "avgs": [
+    8.21,
+    8.36,
+    7.5,
+    8.36,
+    7.5,
+    6.71,
+    6.43,
+    7.93,
+    6.79,
+    7.57,
+    8.43
+  ]
+}

@@ -1,143 +1,143 @@
-# MOEA/D × LLM — 跨学科长尾科研知识多目标进化系统
+# MOEA/D × LLM 多目标进化系统
 
-本项目探索将**多目标进化算法（MOEA/D）**与**大语言模型（LLM）**结合，用于生成、评估和进化跨学科长尾科研知识。
+> 用**大模型 + 多目标进化算法**做两件事：① 长尾科研知识进化 ② 博后/职业选择优化
 
-## 项目概览
+---
 
-LLM 充当进化算子：**生成初始种群** → **多维度评分** → **交叉变异** → **迭代进化**。
+## 一眼看懂
 
-```
-初始种群 (LLM生成)
-    │
-    ▼
-┌─────────────────────────────┐
-│  MOEA/D 多目标进化框架        │
-│  ① 偏置权重向量 (Dirichlet) │
-│  ② 惩罚约束 Tchebycheff     │
-│  ③ 精英保留                 │
-│  LLM 交叉变异 + 评估         │
-└─────────────────────────────┘
-    │
-    ▼
-Pareto 最优解集（最优权衡面）
-```
+| 项目 | 做什么 | 入口 | 输出 |
+|------|--------|------|------|
+| **科研知识进化** | LLM 生成 CS/跨学科研究课题 → MOEA/D 多目标优化 → Pareto 前沿 | `moead_cs_exp.py` / `moead_science_v3.py` | 长尾课题 + PDF 报告 |
+| **博后职业选择** | LLM 评估博后/大厂/教职选项 → 11 维打分 → 演化研究路线 → Pareto 排序 | `moead_career_exp.py` | 推荐选项 + 演化日志 + PDF |
 
-## 实验版本
+**共同点**：都是「LLM 生成/评估 + MOEA/D 多目标进化」，只是决策对象不同（科研课题 vs 职业选项）。
 
-| 版本 | 文件 | 模型 | 目标数 | 说明 |
-|------|------|------|--------|------|
-| v1 | `moead_cs_research.py` | DeepSeek | 3 | 计算机科学长尾知识，基础版 |
-| v2 | `moead_science.py` | DeepSeek | 5 | 扩展至全科学域，5目标 |
-| v3 | `moead_science_v2.py` | Claude-sonnet-4-5 | 7 | 加入可行性+合理性，7目标 |
-| v4 | `moead_science_v3.py` | DeepSeek | 7 | 算法强化版（5项改进） |
-| 对比 | `moead_compare_exp.py` | DeepSeek | 1 vs 4 | 单目标 vs 多目标受控实验 |
+---
 
-## 7 个优化目标（全部最大化，0-10分）
+## 一、博后/职业选择（Career MOEA/D）
 
-| 目标 | 说明 |
+**目标**：在 NTU / Stanford / 国内大厂 / 美国其他学校 等选项中，用 11 维目标优化出 Pareto 最优博后/职业路径。
+
+### 11 维目标
+
+| 维度 | 说明 |
 |------|------|
-| 知识价值 | 对基础科学理论的贡献深度 |
-| 社会影响 | 对人类社会的长远正向影响 |
-| 长尾度 | 研究的稀缺性/小众程度 |
-| 跨学科性 | 跨领域连接与融合潜力 |
-| 前沿性 | 新颖程度 / 突破已知边界 |
-| **可行性** | 当前技术条件下可开展研究的程度 |
-| **合理性** | 科学假设的逻辑严谨性与证伪可能性 |
+| 契合 | 与 MOEA/LLM/AI4Science 背景匹配 |
+| 影响力 | 顶会顶刊、领域认可 |
+| 职业 | 教职/工业界/创业支持 |
+| 资源 | 经费、算力、招聘稳定 |
+| 成长 | 新技能、新领域、独立性 |
+| 可行 | 拿到 offer 概率 |
+| 风险 | 时间、沉没、退出成本 |
+| **Agent** | 与 AI agent 时代趋势契合 |
+| **格局** | 中美博弈下定位与弹性 |
+| **启发** | 对突破性思考的激发 |
+| **上限** | 职业与认知天花板 |
 
-## 算法改进（v4 强化版）
+### 演化机制
 
-1. **偏置权重向量**：Dirichlet(α=[1,1,1,1,1,**3,3**])，可行性/合理性获得 3× 关注
-2. **惩罚约束 Tchebycheff**：低于阈值(5.5分)时施加软约束惩罚
-3. **精英保留**：每代锁定最优可行性/合理性个体不被替换
-4. **强化 LLM 提示**：交叉时硬要求后代可行≥6、合理≥6
-5. **初始种群偏置**：要求 LLM 生成"当前可开展+理论有依据"的知识
+- **交叉**：研究路线交叉（融合两条路线的方法论与应用域）
+- **变异**：时间线/产出/延续策略/退出路径微调
+- **扩展**：每代生成 3 个新选项（国内大厂、美国其他学校）
 
-## 核心发现（权衡关系分析）
+### 运行
 
-| 关系 | r 值 | 类型 |
+```bash
+export DEEPSEEK_API_KEY="your-key"
+python moead_career_exp.py      # 运行演化（约 8 分钟，5 代）
+python moead_career_pdf.py      # 生成 PDF 报告
+```
+
+### 产出
+
+| 文件 | 说明 |
+|------|------|
+| `moead_career_results.json` | Pareto 排序、推荐理由、各代统计 |
+| `career_logs/gen_XX_population.json` | 每代完整种群（选项+路线+得分） |
+| `moead_career_report.pdf` | 演化曲线、分数变化、Pareto Top5（需运行 pdf 脚本生成） |
+
+### 最新结论（5 代演化）
+
+- **Top 1**：MIT CSAIL 优化与学习组（契合 10、启发 10、上限 10）
+- **Top 2**：阿里达摩院 AutoML（契合 10、Agent 9、格局 9）
+- **新加坡 NTU**：演化中被 Stanford/MIT 选项支配，主要因契合度、Agent 契合、上限较低
+
+---
+
+## 二、科研知识进化（Science MOEA/D）
+
+**目标**：LLM 生成长尾科研课题 → MOEA/D 多目标进化 → Pareto 前沿的「新颖+可行+合理」研究方向。
+
+### 7 维目标
+
+知识价值、社会影响、长尾度、跨学科性、前沿性、**可行性**、**合理性**
+
+### 实验版本
+
+| 版本 | 文件 | 说明 |
 |------|------|------|
-| 可行性 ↔ 合理性 | +0.69 | 强协同（验证轴） |
-| 长尾度 ↔ 可行性 | −0.50 | 强对抗（核心矛盾） |
-| 前沿性 ↔ 合理性 | −0.09 | **独立**（最反直觉） |
+| v1 | `moead_cs_research.py` | 3 目标，CS 长尾知识 |
+| v2 | `moead_science.py` | 5 目标，全科学域 |
+| v3 | `moead_science_v2.py` | 7 目标，Claude |
+| v4 | `moead_science_v3.py` | 7 目标 + 5 项算法改进，DeepSeek |
+| 对比 | `moead_compare_exp.py` | 单目标 vs 四目标受控实验 |
+| CS+方案 | `moead_cs_exp.py` | CS 主题 + 研究方案同步进化 |
 
-**最反直觉发现**：前沿性与合理性几乎不相关——前沿不必牺牲严谨，制约两者共存的真正瓶颈是**可行性**。
+### 运行
 
-## 对比实验结果
+```bash
+python moead_science_v3.py      # v4 强化版
+python moead_compare_exp.py     # 对比实验
+python moead_cs_exp.py          # CS + 研究方案
+```
 
-|  | 单目标（仅新颖） | 四目标 MOEA/D |
-|--|---------|---------|
-| 新颖性 | **9.8** | 7.6 |
-| 可行性 | 2.1 | **6.6** |
-| 合理性 | 3.5 | **7.7** |
+### 核心发现
 
-单目标进化收敛到「暗物质多元宇宙通信生物学」等科幻方向；四目标 MOEA/D 收敛到可实验的前沿研究。
+- **长尾度 ↔ 可行性**：强对抗（r≈−0.5）
+- **前沿性 ↔ 合理性**：几乎独立（r≈−0.09）— 前沿不必牺牲严谨
+- 单目标（仅新颖）→ 科幻方向；四目标 → 可实验的前沿研究
+
+---
 
 ## 文件结构
 
 ```
 moead-research/
-├── README.md
-├── .gitignore
+├── README.md                   本说明
 │
-├── # ── v1：3目标 CS 长尾知识 ──
-├── moead_cs_research.py        DeepSeek，3目标
-├── moead_pdf_report.py         PDF 报告生成器
+├── # ═══ 博后职业选择 ═══
+├── moead_career_exp.py         主程序（5 代，扩展变异）
+├── moead_career_pdf.py         PDF 报告生成
+├── moead_career_results.json   运行结果
+├── moead_career_report.md      文本报告
+├── career_logs/                每代种群日志
+│   ├── gen_00_population.json
+│   ├── gen_01_population.json
+│   └── ...
 │
-├── # ── v2：5目标全科学域 ──
-├── moead_science.py            DeepSeek，5目标
-├── moead_science_pdf.py        PDF 报告生成器
-├── moead_science_results.json  运行结果
+├── # ═══ 科研知识进化 ═══
+├── moead_cs_research.py        v1 基础
+├── moead_science*.py           v2–v4
+├── moead_compare_exp.py        对比实验
+├── moead_cs_exp.py             CS + 研究方案
+├── moead_*_pdf.py / moead_*_report.py   各版 PDF/报告
+├── moead_*_results.json        各版结果
 │
-├── # ── v3：7目标 Claude ──
-├── moead_science_v2.py         Claude-sonnet-4-5，7目标
-├── moead_science_v2_pdf.py     PDF 报告生成器
-├── moead_science_v2_results.json
-│
-├── # ── v4：7目标强化版 ──
-├── moead_science_v3.py         DeepSeek，7目标 + 5项算法改进
-├── moead_science_v3_pdf.py     PDF 报告生成器
-├── moead_science_v3_results.json   Claude 版结果
-├── moead_science_v3ds_results.json DeepSeek 版结果
-│
-├── # ── 对比实验 ──
-├── moead_compare_exp.py        单目标 vs 四目标受控对比
-├── moead_compare_pdf.py        对比报告生成器
-├── moead_compare_results.json  对比实验结果
-│
-├── # ── 权衡分析 ──
-├── moead_tradeoff_pdf.py       权衡关系分析 PDF（ReportLab）
-│
-└── latex/
-    └── tradeoff_report.tex     权衡分析报告（LaTeX 版）
+├── # ═══ 权衡分析 ═══
+├── moead_tradeoff_pdf.py
+└── latex/tradeoff_report.tex
 ```
 
-## 快速开始
-
-```bash
-# 安装依赖
-pip install openai anthropic numpy reportlab
-
-# 设置 API Key
-export DEEPSEEK_API_KEY="your-key-here"
-
-# 运行最新版本（v4 强化版）
-python moead_science_v3.py
-
-# 运行对比实验
-python moead_compare_exp.py
-
-# 生成权衡分析 PDF
-python moead_tradeoff_pdf.py
-
-# 编译 LaTeX 报告
-cd latex && xelatex tradeoff_report.tex
-```
+---
 
 ## 依赖
 
-- Python 3.9+
-- `openai` — DeepSeek / OpenAI API
-- `anthropic` — Claude API
-- `numpy` — 权重向量生成、Pareto 计算
-- `reportlab` — PDF 报告生成
-- XeLaTeX + PingFang SC — LaTeX 报告编译（macOS）
+```bash
+pip install openai anthropic numpy reportlab
+```
+
+- **openai**：DeepSeek / OpenAI
+- **anthropic**：Claude
+- **numpy**：权重、Pareto
+- **reportlab**：PDF

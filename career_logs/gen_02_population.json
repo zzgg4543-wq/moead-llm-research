@@ -1,0 +1,668 @@
+{
+  "gen": 2,
+  "population": [
+    {
+      "option_id": "us_berkeley_automl_lab",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "University of California, Berkeley",
+        "advisor_or_team": "AutoML and Evolutionary Computation Lab (e.g., under Prof. Pieter Abbeel or related faculty in BAIR)",
+        "location": "Berkeley, California, USA"
+      },
+      "research_route": {
+        "year1_focus": "Develop novel evolutionary algorithms for automated machine learning, focusing on neural architecture search and hyperparameter optimization, with applications in long-tailed learning and graph neural networks.",
+        "year2_focus": "Collaborate on interdisciplinary projects, such as using automated systems for scientific paper generation or causal inference in AI, building on Eureka experience and causal graph network expertise.",
+        "key_outputs": [
+          "Publications in top conferences (e.g., NeurIPS, ICML)",
+          "Open-source tools for AutoML research",
+          "Grant proposals for NSF or similar funding"
+        ],
+        "continuity_from_background": "Extends Zhe's work on multi-objective optimization and automated systems (U2E, Eureka), with ties to publications in NIPS/ICML and collaborations at Stanford, enhancing research in evolutionary algorithms and AI automation."
+      },
+      "career_path": {
+        "exit_options": [
+          "Faculty positions at US research universities",
+          "Industry research roles in Silicon Valley (e.g., Google Brain, OpenAI)",
+          "Research scientist roles in national labs"
+        ],
+        "pros": [
+          "Prestigious academic environment with strong AI community",
+          "Opportunities for high-impact, open research and collaboration",
+          "Gateway to US academic or industry careers"
+        ],
+        "cons": [
+          "Postdoc positions may be temporary with funding uncertainties",
+          "High competition for faculty roles",
+          "Cost of living in Bay Area"
+        ],
+        "risk_level": "Moderate"
+      },
+      "scores": [
+        9.0,
+        9.0,
+        8.0,
+        8.0,
+        9.0,
+        6.0,
+        7.0,
+        9.0,
+        6.0,
+        9.0,
+        9.0
+      ]
+    },
+    {
+      "option_id": "china_alibaba_damo_autosys",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "Alibaba DAMO Academy",
+        "advisor_or_team": "AutoML and Automated Systems Research Team",
+        "location": "Hangzhou, China"
+      },
+      "research_route": {
+        "year1_focus": "Integrate U2E automatic algorithm evolution system with DAMO's AutoML platform to optimize large-scale industrial AI models, focusing on multi-objective optimization for model compression and deployment.",
+        "year2_focus": "Lead projects on automated scientific discovery, applying evolutionary algorithms to accelerate research in bioinformatics (e.g., genomics) and computational physics, building on PDE optimization expertise.",
+        "key_outputs": [
+          "Patents for automated AI model optimization",
+          "High-impact publications in venues like ICML/NeurIPS",
+          "Deployed systems in Alibaba Cloud for enterprise clients"
+        ],
+        "continuity_from_background": "Directly leverages Zhe's PhD work on U2E and multi-objective optimization under Zhang Qingfu, with applications in omics and PDEs, and extends automated research systems akin to Eureka."
+      },
+      "career_path": {
+        "exit_options": [
+          "Promotion to senior researcher at DAMO",
+          "Transition to AI leadership roles in Alibaba Cloud or other tech giants",
+          "Academic positions in top Chinese universities"
+        ],
+        "pros": [
+          "Access to vast computational resources and real-world data",
+          "High industry impact and visibility",
+          "Strong alignment with China's AI strategy and funding"
+        ],
+        "cons": [
+          "Potential IP restrictions limiting open publication",
+          "Fast-paced environment may reduce deep research time",
+          "Geographic focus in China might limit global collaborations"
+        ],
+        "risk_level": "Low to moderate"
+      },
+      "scores": [
+        10.0,
+        7.0,
+        8.0,
+        10.0,
+        8.0,
+        8.0,
+        6.0,
+        9.0,
+        9.0,
+        8.0,
+        9.0
+      ]
+    },
+    {
+      "option_id": "us_berkeley_automl_lab",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "University of California, Berkeley",
+        "advisor_or_team": "AutoML and Evolutionary Computation Lab (e.g., under Prof. Pieter Abbeel or related faculty in BAIR)",
+        "location": "Berkeley, California, USA"
+      },
+      "research_route": {
+        "year1_focus": "Develop novel evolutionary algorithms for automated machine learning, focusing on neural architecture search and hyperparameter optimization, with applications in long-tailed learning and graph neural networks.",
+        "year2_focus": "Collaborate on interdisciplinary projects, such as using automated systems for scientific paper generation or causal inference in AI, building on Eureka experience and causal graph network expertise.",
+        "key_outputs": [
+          "Publications in top conferences (e.g., NeurIPS, ICML)",
+          "Open-source tools for AutoML research",
+          "Grant proposals for NSF or similar funding"
+        ],
+        "continuity_from_background": "Extends Zhe's work on multi-objective optimization and automated systems (U2E, Eureka), with ties to publications in NIPS/ICML and collaborations at Stanford, enhancing research in evolutionary algorithms and AI automation."
+      },
+      "career_path": {
+        "exit_options": [
+          "Faculty positions at US research universities",
+          "Industry research roles in Silicon Valley (e.g., Google Brain, OpenAI)",
+          "Research scientist roles in national labs"
+        ],
+        "pros": [
+          "Prestigious academic environment with strong AI community",
+          "Opportunities for high-impact, open research and collaboration",
+          "Gateway to US academic or industry careers"
+        ],
+        "cons": [
+          "Postdoc positions may be temporary with funding uncertainties",
+          "High competition for faculty roles",
+          "Cost of living in Bay Area"
+        ],
+        "risk_level": "Moderate"
+      },
+      "scores": [
+        9.0,
+        9.0,
+        8.0,
+        8.0,
+        9.0,
+        6.0,
+        7.0,
+        9.0,
+        6.0,
+        9.0,
+        9.0
+      ]
+    },
+    {
+      "option_id": "china_alibaba_damo_autosys",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "Alibaba DAMO Academy",
+        "advisor_or_team": "AutoML and Automated Systems Research Team",
+        "location": "Hangzhou, China"
+      },
+      "research_route": {
+        "year1_focus": "Integrate U2E automatic algorithm evolution system with DAMO's AutoML platform to optimize large-scale industrial AI models, focusing on multi-objective optimization for model compression and deployment.",
+        "year2_focus": "Lead projects on automated scientific discovery, applying evolutionary algorithms to accelerate research in bioinformatics (e.g., genomics) and computational physics, building on PDE optimization expertise.",
+        "key_outputs": [
+          "Patents for automated AI model optimization",
+          "High-impact publications in venues like ICML/NeurIPS",
+          "Deployed systems in Alibaba Cloud for enterprise clients"
+        ],
+        "continuity_from_background": "Directly leverages Zhe's PhD work on U2E and multi-objective optimization under Zhang Qingfu, with applications in omics and PDEs, and extends automated research systems akin to Eureka."
+      },
+      "career_path": {
+        "exit_options": [
+          "Promotion to senior researcher at DAMO",
+          "Transition to AI leadership roles in Alibaba Cloud or other tech giants",
+          "Academic positions in top Chinese universities"
+        ],
+        "pros": [
+          "Access to vast computational resources and real-world data",
+          "High industry impact and visibility",
+          "Strong alignment with China's AI strategy and funding"
+        ],
+        "cons": [
+          "Potential IP restrictions limiting open publication",
+          "Fast-paced environment may reduce deep research time",
+          "Geographic focus in China might limit global collaborations"
+        ],
+        "risk_level": "Low to moderate"
+      },
+      "scores": [
+        10.0,
+        7.0,
+        8.0,
+        10.0,
+        8.0,
+        8.0,
+        6.0,
+        9.0,
+        9.0,
+        8.0,
+        9.0
+      ]
+    },
+    {
+      "option_id": "china_alibaba_damo_autosys",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "Alibaba DAMO Academy",
+        "advisor_or_team": "AutoML and Automated Systems Research Team",
+        "location": "Hangzhou, China"
+      },
+      "research_route": {
+        "year1_focus": "Integrate U2E automatic algorithm evolution system with DAMO's AutoML platform to optimize large-scale industrial AI models, focusing on multi-objective optimization for model compression and deployment.",
+        "year2_focus": "Lead projects on automated scientific discovery, applying evolutionary algorithms to accelerate research in bioinformatics (e.g., genomics) and computational physics, building on PDE optimization expertise.",
+        "key_outputs": [
+          "Patents for automated AI model optimization",
+          "High-impact publications in venues like ICML/NeurIPS",
+          "Deployed systems in Alibaba Cloud for enterprise clients"
+        ],
+        "continuity_from_background": "Directly leverages Zhe's PhD work on U2E and multi-objective optimization under Zhang Qingfu, with applications in omics and PDEs, and extends automated research systems akin to Eureka."
+      },
+      "career_path": {
+        "exit_options": [
+          "Promotion to senior researcher at DAMO",
+          "Transition to AI leadership roles in Alibaba Cloud or other tech giants",
+          "Academic positions in top Chinese universities"
+        ],
+        "pros": [
+          "Access to vast computational resources and real-world data",
+          "High industry impact and visibility",
+          "Strong alignment with China's AI strategy and funding"
+        ],
+        "cons": [
+          "Potential IP restrictions limiting open publication",
+          "Fast-paced environment may reduce deep research time",
+          "Geographic focus in China might limit global collaborations"
+        ],
+        "risk_level": "Low to moderate"
+      },
+      "scores": [
+        10.0,
+        7.0,
+        8.0,
+        10.0,
+        8.0,
+        8.0,
+        6.0,
+        9.0,
+        9.0,
+        8.0,
+        9.0
+      ]
+    },
+    {
+      "option_id": "us_mit",
+      "type": "postdoc",
+      "anchor": {
+        "institution": "MIT",
+        "supervisor": "Theoretical foundations group",
+        "domain": "Theoretical foundations for evolutionary algorithms"
+      },
+      "research_route": {
+        "year1_focus": "Develop theoretical guarantees for integrating graph neural networks with evolutionary algorithms in reinforcement learning, focusing on convergence, scalability, and robustness proofs",
+        "year2_focus": "Apply these theories to practical RL tasks, such as multi-agent systems or recommendation optimizations, validating with empirical studies from CMU's applied focus",
+        "key_outputs": [
+          "Theoretical papers in top journals (e.g., JMLR)",
+          "Software implementations with proven properties",
+          "Collaborations with experimental ML groups"
+        ],
+        "continuity_from_background": "Uses Zhe's deep knowledge in evolutionary algorithms and GNNs, with a shift toward rigorous formalism, supported by prior publication record in theoretical venues"
+      },
+      "career_path": {
+        "exit_options": [
+          "Tenure-track faculty at elite universities",
+          "Research scientist in corporate AI labs with theoretical focus",
+          "Government or NGO roles in AI policy/standards"
+        ],
+        "pros": [
+          "Foundational impact in ML theory",
+          "Long-term career stability in academia",
+          "High respect in research community"
+        ],
+        "cons": [
+          "Slower immediate practical applications",
+          "Niche focus may limit industry options"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        7.0,
+        10.0,
+        10.0,
+        9.0,
+        8.0,
+        5.0,
+        8.0,
+        6.0,
+        7.0,
+        9.0,
+        9.0
+      ]
+    },
+    {
+      "option_id": "us_cmu",
+      "type": "faculty",
+      "anchor": {
+        "institution_or_company": "Carnegie Mellon University",
+        "advisor_or_team": "Machine Learning Department (Tenure-track Assistant Professor)",
+        "location": "Pittsburgh, USA"
+      },
+      "research_route": {
+        "original": "Y1=Establish research program on automated machine le",
+        "mutated": "Y1=Establish research program on automated machine learning; Y2=Integrate U2E system to enhance automated algorithm evolution capabilities"
+      },
+      "career_path": {},
+      "scores": [
+        7.0,
+        10.0,
+        10.0,
+        8.0,
+        9.0,
+        4.0,
+        9.0,
+        7.0,
+        7.0,
+        9.0,
+        10.0
+      ]
+    },
+    {
+      "option_id": "us_berkeley_automl_lab",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "University of California, Berkeley",
+        "advisor_or_team": "AutoML and Evolutionary Computation Lab (e.g., under Prof. Pieter Abbeel or related faculty in BAIR)",
+        "location": "Berkeley, California, USA"
+      },
+      "research_route": {
+        "year1_focus": "Develop novel evolutionary algorithms for automated machine learning, focusing on neural architecture search and hyperparameter optimization, with applications in long-tailed learning and graph neural networks.",
+        "year2_focus": "Collaborate on interdisciplinary projects, such as using automated systems for scientific paper generation or causal inference in AI, building on Eureka experience and causal graph network expertise.",
+        "key_outputs": [
+          "Publications in top conferences (e.g., NeurIPS, ICML)",
+          "Open-source tools for AutoML research",
+          "Grant proposals for NSF or similar funding"
+        ],
+        "continuity_from_background": "Extends Zhe's work on multi-objective optimization and automated systems (U2E, Eureka), with ties to publications in NIPS/ICML and collaborations at Stanford, enhancing research in evolutionary algorithms and AI automation."
+      },
+      "career_path": {
+        "exit_options": [
+          "Faculty positions at US research universities",
+          "Industry research roles in Silicon Valley (e.g., Google Brain, OpenAI)",
+          "Research scientist roles in national labs"
+        ],
+        "pros": [
+          "Prestigious academic environment with strong AI community",
+          "Opportunities for high-impact, open research and collaboration",
+          "Gateway to US academic or industry careers"
+        ],
+        "cons": [
+          "Postdoc positions may be temporary with funding uncertainties",
+          "High competition for faculty roles",
+          "Cost of living in Bay Area"
+        ],
+        "risk_level": "Moderate"
+      },
+      "scores": [
+        9.0,
+        9.0,
+        8.0,
+        8.0,
+        9.0,
+        6.0,
+        7.0,
+        9.0,
+        6.0,
+        9.0,
+        9.0
+      ]
+    },
+    {
+      "option_id": "china_alibaba_damo_autosys",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "Alibaba DAMO Academy",
+        "advisor_or_team": "AutoML and Automated Systems Research Team",
+        "location": "Hangzhou, China"
+      },
+      "research_route": {
+        "year1_focus": "Integrate U2E automatic algorithm evolution system with DAMO's AutoML platform to optimize large-scale industrial AI models, focusing on multi-objective optimization for model compression and deployment.",
+        "year2_focus": "Lead projects on automated scientific discovery, applying evolutionary algorithms to accelerate research in bioinformatics (e.g., genomics) and computational physics, building on PDE optimization expertise.",
+        "key_outputs": [
+          "Patents for automated AI model optimization",
+          "High-impact publications in venues like ICML/NeurIPS",
+          "Deployed systems in Alibaba Cloud for enterprise clients"
+        ],
+        "continuity_from_background": "Directly leverages Zhe's PhD work on U2E and multi-objective optimization under Zhang Qingfu, with applications in omics and PDEs, and extends automated research systems akin to Eureka."
+      },
+      "career_path": {
+        "exit_options": [
+          "Promotion to senior researcher at DAMO",
+          "Transition to AI leadership roles in Alibaba Cloud or other tech giants",
+          "Academic positions in top Chinese universities"
+        ],
+        "pros": [
+          "Access to vast computational resources and real-world data",
+          "High industry impact and visibility",
+          "Strong alignment with China's AI strategy and funding"
+        ],
+        "cons": [
+          "Potential IP restrictions limiting open publication",
+          "Fast-paced environment may reduce deep research time",
+          "Geographic focus in China might limit global collaborations"
+        ],
+        "risk_level": "Low to moderate"
+      },
+      "scores": [
+        10.0,
+        7.0,
+        8.0,
+        10.0,
+        8.0,
+        8.0,
+        6.0,
+        9.0,
+        9.0,
+        8.0,
+        9.0
+      ]
+    },
+    {
+      "option_id": "industry_deepmind",
+      "type": "postdoc",
+      "anchor": {
+        "institution": "DeepMind",
+        "supervisor": "Industry team",
+        "domain": "Advanced AI research with industrial applications"
+      },
+      "research_route": {
+        "year1_focus": "Fuse evolutionary algorithms with large language model optimization (from Zhipu's focus) to enhance multi-objective decision-making in complex systems, such as game-playing or scientific simulation agents",
+        "year2_focus": "Apply these methods to real-world problems like automated scientific paper generation or adaptive recommendation engines, leveraging DeepMind's infrastructure for large-scale experiments",
+        "key_outputs": [
+          "Integrated evolutionary-LLM framework",
+          "Demonstrations in high-impact domains (e.g., AlphaFold-like projects)",
+          "Patents or open-source contributions"
+        ],
+        "continuity_from_background": "Connects to Zhe's experience with U2E (automated algorithm evolution) and Eureka (automated paper writing), extending into cutting-edge AI applications"
+      },
+      "career_path": {
+        "exit_options": [
+          "Senior AI researcher at top labs (DeepMind, OpenAI)",
+          "Leadership in AI product development",
+          "Consulting for AI-driven industries"
+        ],
+        "pros": [
+          "Access to state-of-the-art resources and talent",
+          "Potential for groundbreaking innovations",
+          "High compensation and prestige"
+        ],
+        "cons": [
+          "High pressure and fast-paced environment",
+          "Less academic freedom compared to university settings"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        8.0,
+        9.0,
+        9.0,
+        10.0,
+        8.0,
+        6.0,
+        7.0,
+        9.0,
+        6.0,
+        8.0,
+        10.0
+      ]
+    },
+    {
+      "option_id": "us_cmu",
+      "type": "faculty",
+      "anchor": {
+        "institution_or_company": "Carnegie Mellon University",
+        "advisor_or_team": "Machine Learning Department (Tenure-track Assistant Professor)",
+        "location": "Pittsburgh, USA"
+      },
+      "research_route": {
+        "original": "Y1=Establish research program on automated machine le",
+        "mutated": "Y1=Establish research program on automated machine learning; Y2=Integrate U2E system to enhance automated algorithm evolution capabilities"
+      },
+      "career_path": {},
+      "scores": [
+        7.0,
+        10.0,
+        10.0,
+        8.0,
+        9.0,
+        4.0,
+        9.0,
+        7.0,
+        7.0,
+        9.0,
+        10.0
+      ]
+    },
+    {
+      "option_id": "us_cmu",
+      "type": "faculty",
+      "anchor": {
+        "institution_or_company": "Carnegie Mellon University",
+        "advisor_or_team": "Machine Learning Department (Tenure-track Assistant Professor)",
+        "location": "Pittsburgh, USA"
+      },
+      "research_route": {
+        "year1_focus": "Establish research program on automated machine learning systems, combining evolutionary algorithms with neural architecture search",
+        "year2_focus": "Develop interdisciplinary applications in computational biology and scientific discovery, leveraging optimization expertise",
+        "key_outputs": [
+          "Grant funding from NSF/DARPA",
+          "PhD student recruitment and mentoring",
+          "High-impact publications in top venues"
+        ],
+        "continuity_from_background": "Direct continuation of automated algorithm development work from PhD, builds on strong publication record, leverages interdisciplinary experience from omics/PDE work"
+      },
+      "career_path": {
+        "exit_options": [
+          "Tenured professor at CMU",
+          "Research leadership roles in industry",
+          "Director of academic research centers"
+        ],
+        "pros": [
+          "Academic freedom to pursue long-term research agenda",
+          "Opportunity to build own research group",
+          "Prestigious position with job security after tenure"
+        ],
+        "cons": [
+          "High pressure for tenure requirements",
+          "Substantial teaching and service responsibilities",
+          "Lower initial compensation than industry"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        9.0,
+        10.0,
+        10.0,
+        8.0,
+        9.0,
+        4.0,
+        9.0,
+        8.0,
+        7.0,
+        9.0,
+        10.0
+      ]
+    },
+    {
+      "option_id": "industry_deepmind",
+      "type": "postdoc",
+      "anchor": {
+        "institution": "DeepMind",
+        "supervisor": "Industry team",
+        "domain": "Advanced AI research with industrial applications"
+      },
+      "research_route": {
+        "year1_focus": "Fuse evolutionary algorithms with large language model optimization (from Zhipu's focus) to enhance multi-objective decision-making in complex systems, such as game-playing or scientific simulation agents",
+        "year2_focus": "Apply these methods to real-world problems like automated scientific paper generation or adaptive recommendation engines, leveraging DeepMind's infrastructure for large-scale experiments",
+        "key_outputs": [
+          "Integrated evolutionary-LLM framework",
+          "Demonstrations in high-impact domains (e.g., AlphaFold-like projects)",
+          "Patents or open-source contributions"
+        ],
+        "continuity_from_background": "Connects to Zhe's experience with U2E (automated algorithm evolution) and Eureka (automated paper writing), extending into cutting-edge AI applications"
+      },
+      "career_path": {
+        "exit_options": [
+          "Senior AI researcher at top labs (DeepMind, OpenAI)",
+          "Leadership in AI product development",
+          "Consulting for AI-driven industries"
+        ],
+        "pros": [
+          "Access to state-of-the-art resources and talent",
+          "Potential for groundbreaking innovations",
+          "High compensation and prestige"
+        ],
+        "cons": [
+          "High pressure and fast-paced environment",
+          "Less academic freedom compared to university settings"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        8.0,
+        9.0,
+        9.0,
+        10.0,
+        8.0,
+        6.0,
+        7.0,
+        9.0,
+        6.0,
+        8.0,
+        10.0
+      ]
+    },
+    {
+      "option_id": "industry_deepmind",
+      "type": "postdoc",
+      "anchor": {
+        "institution": "DeepMind",
+        "supervisor": "Industry team",
+        "domain": "Advanced AI research with industrial applications"
+      },
+      "research_route": {
+        "year1_focus": "Fuse evolutionary algorithms with large language model optimization (from Zhipu's focus) to enhance multi-objective decision-making in complex systems, such as game-playing or scientific simulation agents",
+        "year2_focus": "Apply these methods to real-world problems like automated scientific paper generation or adaptive recommendation engines, leveraging DeepMind's infrastructure for large-scale experiments",
+        "key_outputs": [
+          "Integrated evolutionary-LLM framework",
+          "Demonstrations in high-impact domains (e.g., AlphaFold-like projects)",
+          "Patents or open-source contributions"
+        ],
+        "continuity_from_background": "Connects to Zhe's experience with U2E (automated algorithm evolution) and Eureka (automated paper writing), extending into cutting-edge AI applications"
+      },
+      "career_path": {
+        "exit_options": [
+          "Senior AI researcher at top labs (DeepMind, OpenAI)",
+          "Leadership in AI product development",
+          "Consulting for AI-driven industries"
+        ],
+        "pros": [
+          "Access to state-of-the-art resources and talent",
+          "Potential for groundbreaking innovations",
+          "High compensation and prestige"
+        ],
+        "cons": [
+          "High pressure and fast-paced environment",
+          "Less academic freedom compared to university settings"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        8.0,
+        9.0,
+        9.0,
+        10.0,
+        8.0,
+        6.0,
+        7.0,
+        9.0,
+        6.0,
+        8.0,
+        10.0
+      ]
+    }
+  ],
+  "avgs": [
+    8.64,
+    8.71,
+    8.79,
+    9.07,
+    8.43,
+    6.07,
+    7.21,
+    8.43,
+    7.14,
+    8.5,
+    9.43
+  ]
+}

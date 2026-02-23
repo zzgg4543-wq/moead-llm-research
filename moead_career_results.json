@@ -1,0 +1,893 @@
+{
+  "profile_summary": "Zhe Zhao，USTC+CityU HK 联合培养博士。\n· 师从张青富系统学习多目标优化与进化算法。\n· 开发 U2E 自动算法进化系统（早于 Alpha Evolve），在组学、PDE 等领域超越人类专家；探索矩阵乘法等底层优化。\n· 斯坦福期间主导 Eureka 科研论文撰写系统，将假设与已有研究验证后自动生成可投稿论文。\n· 一作：NIPS 2024/2025, ICML 2024/2025, AAAI 2024/2025, TKDE 等；长尾学习、图神经网络、因果图网络。\n· 已有合作：NTU 安波(2025.3-7)、Stanford 仇夏婕 Qiu(2025.7-2026.6)。",
+  "config": {
+    "pop_size": 14,
+    "n_gens": 5,
+    "n_expand_per_gen": 3,
+    "objectives": [
+      "契合",
+      "影响力",
+      "职业",
+      "资源",
+      "成长",
+      "可行",
+      "风险",
+      "Agent",
+      "格局",
+      "启发",
+      "上限"
+    ],
+    "log_dir": "career_logs"
+  },
+  "evaluated_options": [
+    {
+      "option_id": "us_mit",
+      "type": "postdoc",
+      "anchor": {
+        "institution": "MIT",
+        "location": "USA",
+        "domain": "Theoretical Computer Science"
+      },
+      "research_route": {
+        "year1_focus": "Develop unified theoretical foundations for evolutionary algorithms and integrated systems, leveraging MIT's mathematical rigor and Zhao's practical experience",
+        "year2_focus": "Establish theoretical guarantees for evolutionary optimization in complex systems, with applications to Zhao's previous work in PDEs and matrix multiplication",
+        "key_outputs": [
+          "Theoretical frameworks for evolutionary-integrated systems",
+          "Proofs of convergence and efficiency",
+          "High-impact theory publications"
+        ],
+        "continuity_from_background": "Directly extends Zhao's training in multi-objective optimization under Zhang Qingfu, deepening theoretical understanding while maintaining practical relevance"
+      },
+      "career_path": {
+        "exit_options": [
+          "Tenure-track professor at top university",
+          "Research scientist at theoretical AI lab",
+          "Consultant for algorithm design"
+        ],
+        "pros": [
+          "Strong theoretical foundation",
+          "High academic prestige",
+          "Long-term research impact"
+        ],
+        "cons": [
+          "Less immediate industry application",
+          "Competitive academic environment"
+        ],
+        "risk_level": "Low"
+      },
+      "scores": [
+        1.0,
+        1.0,
+        0.9,
+        0.9,
+        0.9,
+        0.6,
+        0.7,
+        0.8,
+        0.6,
+        1.0,
+        1.0
+      ],
+      "rank": 4,
+      "pareto_front": true
+    },
+    {
+      "option_id": "china_alibaba_damo_autosys",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "Alibaba DAMO Academy",
+        "advisor_or_team": "AutoML and Automated Systems Research Team",
+        "location": "Hangzhou, China"
+      },
+      "research_route": {
+        "year1_focus": "Integrate U2E automatic algorithm evolution system with DAMO's AutoML platform to optimize large-scale industrial AI models, focusing on multi-objective optimization for model compression and deployment.",
+        "year2_focus": "Lead projects on automated scientific discovery, applying evolutionary algorithms to accelerate research in bioinformatics (e.g., genomics) and computational physics, building on PDE optimization expertise.",
+        "key_outputs": [
+          "Patents for automated AI model optimization",
+          "High-impact publications in venues like ICML/NeurIPS",
+          "Deployed systems in Alibaba Cloud for enterprise clients"
+        ],
+        "continuity_from_background": "Directly leverages Zhe's PhD work on U2E and multi-objective optimization under Zhang Qingfu, with applications in omics and PDEs, and extends automated research systems akin to Eureka."
+      },
+      "career_path": {
+        "exit_options": [
+          "Promotion to senior researcher at DAMO",
+          "Transition to AI leadership roles in Alibaba Cloud or other tech giants",
+          "Academic positions in top Chinese universities"
+        ],
+        "pros": [
+          "Access to vast computational resources and real-world data",
+          "High industry impact and visibility",
+          "Strong alignment with China's AI strategy and funding"
+        ],
+        "cons": [
+          "Potential IP restrictions limiting open publication",
+          "Fast-paced environment may reduce deep research time",
+          "Geographic focus in China might limit global collaborations"
+        ],
+        "risk_level": "Low to moderate"
+      },
+      "scores": [
+        1.0,
+        0.7,
+        0.8,
+        1.0,
+        0.8,
+        0.8,
+        0.6,
+        0.9,
+        0.9,
+        0.8,
+        0.9
+      ],
+      "rank": 5,
+      "pareto_front": true
+    },
+    {
+      "option_id": "us_berkeley_eecs_ai_optimization",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "加州大学伯克利分校",
+        "advisor_or_team": "EECS系，Michael I. Jordan实验室（机器学习与优化方向）",
+        "location": "美国伯克利"
+      },
+      "research_route": {
+        "year1_focus": "结合进化算法与贝叶斯优化，研究大规模机器学习模型的自动化超参数调优与架构搜索",
+        "year2_focus": "探索因果图网络在优化问题中的应用，开发可解释的AI优化方法，并撰写高影响力论文",
+        "key_outputs": [
+          "顶会论文（目标NeurIPS/ICML）",
+          "开源代码库",
+          "与工业界合作项目"
+        ],
+        "continuity_from_background": "直接延续在进化算法、多目标优化和因果图网络的研究，利用伯克利在机器学习理论的优势深化学术成果，与斯坦福Eureka项目经验互补"
+      },
+      "career_path": {
+        "exit_options": [
+          "申请美国顶尖大学助理教授职位（如MIT、Stanford）",
+          "加入美国科技公司研究部门（如Google Brain、Meta AI）",
+          "返回亚洲学术界（如NTU、USTC）"
+        ],
+        "pros": [
+          "顶级学术环境与导师指导",
+          "高自由度探索前沿研究方向",
+          "增强国际学术网络与声誉"
+        ],
+        "cons": [
+          "博士后薪资相对较低",
+          "职位临时性，需规划后续职业",
+          "竞争激烈，发表压力大"
+        ],
+        "risk_level": "中"
+      },
+      "scores": [
+        0.9,
+        1.0,
+        0.8,
+        0.8,
+        0.9,
+        0.7,
+        0.7,
+        0.8,
+        0.6,
+        0.9,
+        0.9
+      ],
+      "rank": 9,
+      "pareto_front": true
+    },
+    {
+      "option_id": "china_alibaba_damo_autonomous_ai",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "阿里巴巴达摩院",
+        "advisor_or_team": "自动驾驶与智能系统实验室",
+        "location": "中国杭州"
+      },
+      "research_route": {
+        "year1_focus": "将多目标优化与进化算法应用于自动驾驶系统的感知与决策模块，提升系统鲁棒性与效率",
+        "year2_focus": "开发基于U2E系统的自动算法进化框架，优化自动驾驶中的长尾场景处理与实时计算",
+        "key_outputs": [
+          "自动驾驶算法专利",
+          "顶会论文（如NeurIPS/ICML）",
+          "开源工具包"
+        ],
+        "continuity_from_background": "延续在自动算法进化（U2E）和多目标优化方面的专长，应用于工业级自动驾驶问题，与组学、PDE优化经验形成技术迁移"
+      },
+      "career_path": {
+        "exit_options": [
+          "晋升为达摩院高级研究员",
+          "转至其他大厂AI实验室（如腾讯、字节）",
+          "创业或加入自动驾驶初创公司"
+        ],
+        "pros": [
+          "高薪资与资源支持",
+          "接触大规模真实数据与应用场景",
+          "快速技术落地与产业影响"
+        ],
+        "cons": [
+          "研究方向可能受商业目标限制",
+          "发表学术论文的自由度较低",
+          "工作强度较高"
+        ],
+        "risk_level": "低"
+      },
+      "scores": [
+        0.9,
+        0.7,
+        0.8,
+        0.9,
+        0.7,
+        0.8,
+        0.6,
+        0.9,
+        0.7,
+        0.7,
+        0.8
+      ],
+      "rank": 999,
+      "pareto_front": false
+    },
+    {
+      "option_id": "china_alibaba_damo_autonomous_ai",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "阿里巴巴达摩院",
+        "advisor_or_team": "自动驾驶与智能系统实验室",
+        "location": "中国杭州"
+      },
+      "research_route": {
+        "year1_focus": "将多目标优化与进化算法应用于自动驾驶系统的感知与决策模块，提升系统鲁棒性与效率",
+        "year2_focus": "开发基于U2E系统的自动算法进化框架，优化自动驾驶中的长尾场景处理与实时计算",
+        "key_outputs": [
+          "自动驾驶算法专利",
+          "顶会论文（如NeurIPS/ICML）",
+          "开源工具包"
+        ],
+        "continuity_from_background": "延续在自动算法进化（U2E）和多目标优化方面的专长，应用于工业级自动驾驶问题，与组学、PDE优化经验形成技术迁移"
+      },
+      "career_path": {
+        "exit_options": [
+          "晋升为达摩院高级研究员",
+          "转至其他大厂AI实验室（如腾讯、字节）",
+          "创业或加入自动驾驶初创公司"
+        ],
+        "pros": [
+          "高薪资与资源支持",
+          "接触大规模真实数据与应用场景",
+          "快速技术落地与产业影响"
+        ],
+        "cons": [
+          "研究方向可能受商业目标限制",
+          "发表学术论文的自由度较低",
+          "工作强度较高"
+        ],
+        "risk_level": "低"
+      },
+      "scores": [
+        0.9,
+        0.7,
+        0.8,
+        0.9,
+        0.7,
+        0.8,
+        0.6,
+        0.9,
+        0.7,
+        0.7,
+        0.8
+      ],
+      "rank": 999,
+      "pareto_front": false
+    },
+    {
+      "option_id": "us_mit",
+      "type": "postdoc",
+      "anchor": {
+        "institution": "MIT",
+        "supervisor": "Theoretical foundations group",
+        "domain": "Theoretical foundations for evolutionary algorithms"
+      },
+      "research_route": {
+        "year1_focus": "Develop theoretical guarantees for integrating graph neural networks with evolutionary algorithms in reinforcement learning, focusing on convergence, scalability, and robustness proofs",
+        "year2_focus": "Apply these theories to practical RL tasks, such as multi-agent systems or recommendation optimizations, validating with empirical studies from CMU's applied focus",
+        "key_outputs": [
+          "Theoretical papers in top journals (e.g., JMLR)",
+          "Software implementations with proven properties",
+          "Collaborations with experimental ML groups"
+        ],
+        "continuity_from_background": "Uses Zhe's deep knowledge in evolutionary algorithms and GNNs, with a shift toward rigorous formalism, supported by prior publication record in theoretical venues"
+      },
+      "career_path": {
+        "exit_options": [
+          "Tenure-track faculty at elite universities",
+          "Research scientist in corporate AI labs with theoretical focus",
+          "Government or NGO roles in AI policy/standards"
+        ],
+        "pros": [
+          "Foundational impact in ML theory",
+          "Long-term career stability in academia",
+          "High respect in research community"
+        ],
+        "cons": [
+          "Slower immediate practical applications",
+          "Niche focus may limit industry options"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        0.7,
+        1.0,
+        1.0,
+        0.9,
+        0.8,
+        0.5,
+        0.8,
+        0.6,
+        0.7,
+        0.9,
+        0.9
+      ],
+      "rank": 4,
+      "pareto_front": true
+    },
+    {
+      "option_id": "us_mit",
+      "type": "postdoc",
+      "anchor": {
+        "institution": "MIT",
+        "focus": "Theoretical guarantees for integration"
+      },
+      "research_route": {
+        "year1_focus": "Develop theoretical foundations for evolutionary algorithm integration with large-scale AI systems",
+        "year2_focus": "Establish convergence guarantees and complexity bounds for hybrid evolutionary-neural architectures",
+        "key_outputs": [
+          "Theoretical framework papers",
+          "Mathematical proofs for evolutionary AI",
+          "Foundational conference publications"
+        ],
+        "continuity_from_background": "Builds on strong theoretical training from USTC while addressing cutting-edge AI integration challenges"
+      },
+      "career_path": {
+        "exit_options": [
+          "Tenure-track academic positions",
+          "Research scientist at theory-focused labs",
+          "AI policy advisory roles"
+        ],
+        "pros": [
+          "Strong academic prestige",
+          "Theoretical depth",
+          "Long-term impact"
+        ],
+        "cons": [
+          "Less immediate practical application",
+          "Competitive academic market",
+          "Slower career progression"
+        ],
+        "risk_level": "High"
+      },
+      "scores": [
+        0.8,
+        1.0,
+        1.0,
+        0.8,
+        0.9,
+        0.6,
+        0.7,
+        0.8,
+        0.7,
+        1.0,
+        1.0
+      ],
+      "rank": 4,
+      "pareto_front": true
+    },
+    {
+      "option_id": "us_mit_csail_ai_optimization",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "Massachusetts Institute of Technology",
+        "advisor_or_team": "Computer Science and Artificial Intelligence Laboratory (CSAIL), Optimization and Learning Group",
+        "location": "Cambridge, USA"
+      },
+      "research_route": {
+        "year1_focus": "Work on fundamental optimization problems in AI, such as matrix multiplication and PDE solving, using evolutionary methods.",
+        "year2_focus": "Apply multi-objective optimization to causal graph networks and long-tail learning, with interdisciplinary collaborations.",
+        "key_outputs": [
+          "Breakthroughs in algorithmic efficiency",
+          "High-impact journal papers (e.g., in TKDE)",
+          "Collaborations with MIT labs and industry"
+        ],
+        "continuity_from_background": "Builds on PhD work in multi-objective optimization, matrix multiplication optimization, and experience with top-tier publications and Stanford collaborations."
+      },
+      "career_path": {
+        "exit_options": [
+          "Professor at elite universities",
+          "Research scientist at top AI companies",
+          "Government or nonprofit research roles"
+        ],
+        "pros": [
+          "Prestigious institution with world-class resources",
+          "Opportunities for groundbreaking research",
+          "Strong alumni network for career advancement"
+        ],
+        "cons": [
+          "High expectations and pressure to produce significant results",
+          "Cost of living in Boston area"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        1.0,
+        1.0,
+        0.9,
+        0.9,
+        0.9,
+        0.6,
+        0.7,
+        0.9,
+        0.7,
+        1.0,
+        1.0
+      ],
+      "rank": 1,
+      "pareto_front": true
+    },
+    {
+      "option_id": "china_alibaba_damo_autosys",
+      "type": "industry_researcher",
+      "anchor": {
+        "institution_or_company": "Alibaba DAMO Academy",
+        "advisor_or_team": "AutoML and Automated Systems Research Team",
+        "location": "Hangzhou, China"
+      },
+      "research_route": {
+        "year1_focus": "Integrate U2E automatic algorithm evolution system with DAMO's AutoML platform to optimize large-scale industrial AI models, focusing on multi-objective optimization for model compression and deployment.",
+        "year2_focus": "Lead projects on automated scientific discovery, applying evolutionary algorithms to accelerate research in bioinformatics (e.g., genomics) and computational physics, building on PDE optimization expertise.",
+        "key_outputs": [
+          "Patents for automated AI model optimization",
+          "High-impact publications in venues like ICML/NeurIPS",
+          "Deployed systems in Alibaba Cloud for enterprise clients"
+        ],
+        "continuity_from_background": "Directly leverages Zhe's PhD work on U2E and multi-objective optimization under Zhang Qingfu, with applications in omics and PDEs, and extends automated research systems akin to Eureka."
+      },
+      "career_path": {
+        "exit_options": [
+          "Promotion to senior researcher at DAMO",
+          "Transition to AI leadership roles in Alibaba Cloud or other tech giants",
+          "Academic positions in top Chinese universities"
+        ],
+        "pros": [
+          "Access to vast computational resources and real-world data",
+          "High industry impact and visibility",
+          "Strong alignment with China's AI strategy and funding"
+        ],
+        "cons": [
+          "Potential IP restrictions limiting open publication",
+          "Fast-paced environment may reduce deep research time",
+          "Geographic focus in China might limit global collaborations"
+        ],
+        "risk_level": "Low to moderate"
+      },
+      "scores": [
+        1.0,
+        0.7,
+        0.8,
+        1.0,
+        0.8,
+        0.8,
+        0.6,
+        0.9,
+        0.9,
+        0.8,
+        0.9
+      ],
+      "rank": 5,
+      "pareto_front": true
+    },
+    {
+      "option_id": "us_mit_csail_ai_optimization",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "Massachusetts Institute of Technology",
+        "advisor_or_team": "Computer Science and Artificial Intelligence Laboratory (CSAIL), Optimization and Learning Group",
+        "location": "Cambridge, USA"
+      },
+      "research_route": {
+        "year1_focus": "Work on fundamental optimization problems in AI, such as matrix multiplication and PDE solving, using evolutionary methods.",
+        "year2_focus": "Apply multi-objective optimization to causal graph networks and long-tail learning, with interdisciplinary collaborations.",
+        "key_outputs": [
+          "Breakthroughs in algorithmic efficiency",
+          "High-impact journal papers (e.g., in TKDE)",
+          "Collaborations with MIT labs and industry"
+        ],
+        "continuity_from_background": "Builds on PhD work in multi-objective optimization, matrix multiplication optimization, and experience with top-tier publications and Stanford collaborations."
+      },
+      "career_path": {
+        "exit_options": [
+          "Professor at elite universities",
+          "Research scientist at top AI companies",
+          "Government or nonprofit research roles"
+        ],
+        "pros": [
+          "Prestigious institution with world-class resources",
+          "Opportunities for groundbreaking research",
+          "Strong alumni network for career advancement"
+        ],
+        "cons": [
+          "High expectations and pressure to produce significant results",
+          "Cost of living in Boston area"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        1.0,
+        1.0,
+        0.9,
+        0.9,
+        0.9,
+        0.6,
+        0.7,
+        0.9,
+        0.7,
+        1.0,
+        1.0
+      ],
+      "rank": 1,
+      "pareto_front": true
+    },
+    {
+      "option_id": "us_cmu",
+      "type": "faculty",
+      "anchor": {
+        "institution_or_company": "Carnegie Mellon University",
+        "advisor_or_team": "Machine Learning Department (Tenure-track Assistant Professor)",
+        "location": "Pittsburgh, USA"
+      },
+      "research_route": {
+        "original": "Y1=Establish research program on automated machine le",
+        "mutated": "Y1=Establish research program on automated machine learning; Y2=Integrate U2E system to enhance automated algorithm evolution capabilities"
+      },
+      "career_path": {},
+      "scores": [
+        0.7,
+        1.0,
+        1.0,
+        0.8,
+        0.9,
+        0.4,
+        0.9,
+        0.7,
+        0.7,
+        0.9,
+        1.0
+      ],
+      "rank": 8,
+      "pareto_front": true
+    },
+    {
+      "option_id": "us_mit_csail_ai_optimization",
+      "type": "postdoc",
+      "anchor": {
+        "institution_or_company": "Massachusetts Institute of Technology",
+        "advisor_or_team": "Computer Science and Artificial Intelligence Laboratory (CSAIL), Optimization and Learning Group",
+        "location": "Cambridge, USA"
+      },
+      "research_route": {
+        "year1_focus": "Work on fundamental optimization problems in AI, such as matrix multiplication and PDE solving, using evolutionary methods.",
+        "year2_focus": "Apply multi-objective optimization to causal graph networks and long-tail learning, with interdisciplinary collaborations.",
+        "key_outputs": [
+          "Breakthroughs in algorithmic efficiency",
+          "High-impact journal papers (e.g., in TKDE)",
+          "Collaborations with MIT labs and industry"
+        ],
+        "continuity_from_background": "Builds on PhD work in multi-objective optimization, matrix multiplication optimization, and experience with top-tier publications and Stanford collaborations."
+      },
+      "career_path": {
+        "exit_options": [
+          "Professor at elite universities",
+          "Research scientist at top AI companies",
+          "Government or nonprofit research roles"
+        ],
+        "pros": [
+          "Prestigious institution with world-class resources",
+          "Opportunities for groundbreaking research",
+          "Strong alumni network for career advancement"
+        ],
+        "cons": [
+          "High expectations and pressure to produce significant results",
+          "Cost of living in Boston area"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        1.0,
+        1.0,
+        0.9,
+        0.9,
+        0.9,
+        0.6,
+        0.7,
+        0.9,
+        0.7,
+        1.0,
+        1.0
+      ],
+      "rank": 1,
+      "pareto_front": true
+    },
+    {
+      "option_id": "us_mit",
+      "type": "postdoc",
+      "anchor": {
+        "institution": "MIT",
+        "location": "USA",
+        "domain": "Theoretical Computer Science"
+      },
+      "research_route": {
+        "original": "Y1=Develop unified theoretical foundations for evolution",
+        "mutated": "Y1=Develop unified theoretical foundations for evolutionary algorithms, with potential extension to Y2 applications in causal inference",
+        "mutation_type": "延续策略",
+        "rationale": "基于候选人因果图网络研究背景，为理论发展增加可能的延续方向，增强研究路线的扩展性"
+      },
+      "career_path": {},
+      "scores": [
+        0.8,
+        1.0,
+        0.9,
+        0.9,
+        0.8,
+        0.6,
+        0.7,
+        0.7,
+        0.6,
+        0.9,
+        1.0
+      ],
+      "rank": 4,
+      "pareto_front": true
+    },
+    {
+      "option_id": "industry_deepmind",
+      "type": "postdoc",
+      "anchor": {
+        "institution": "DeepMind",
+        "focus": "Evolutionary algorithms fused with large-scale AI systems"
+      },
+      "research_route": {
+        "year1_focus": "Integrate U2E automatic algorithm evolution system with large-scale AI models to develop self-evolving AI architectures",
+        "year2_focus": "Apply evolutionary optimization to improve training efficiency and generalization of foundation models",
+        "key_outputs": [
+          "Hybrid evolutionary-neural architectures",
+          "Automated model compression techniques",
+          "Benchmark results on large-scale tasks"
+        ],
+        "continuity_from_background": "Direct application of U2E system expertise to cutting-edge AI research, leveraging evolutionary algorithm background"
+      },
+      "career_path": {
+        "exit_options": [
+          "Senior AI researcher at tech giants",
+          "Academic positions with industry collaborations",
+          "AI startup founder"
+        ],
+        "pros": [
+          "Access to massive computational resources",
+          "High-impact publications",
+          "Strong industry recognition"
+        ],
+        "cons": [
+          "Intense competition",
+          "Potential IP restrictions",
+          "Fast-paced environment"
+        ],
+        "risk_level": "Medium"
+      },
+      "scores": [
+        0.9,
+        1.0,
+        0.8,
+        1.0,
+        0.8,
+        0.7,
+        0.6,
+        1.0,
+        0.5,
+        0.9,
+        1.0
+      ],
+      "rank": 7,
+      "pareto_front": true
+    }
+  ],
+  "pareto_ranking": [
+    "us_mit_csail_ai_optimization",
+    "us_mit_csail_ai_optimization",
+    "us_mit_csail_ai_optimization",
+    "us_mit",
+    "china_alibaba_damo_autosys",
+    "china_alibaba_damo_autosys",
+    "industry_deepmind",
+    "us_cmu",
+    "us_berkeley_eecs_ai_optimization",
+    "us_mit"
+  ],
+  "recommendations": [
+    {
+      "option_id": "us_mit_csail_ai_optimization",
+      "brief": "在MIT CSAIL优化与学习组深化多目标优化与进化算法研究，利用顶尖学术资源推动算法理论创新。",
+      "pros": [
+        "世界顶级AI实验室，学术声誉极高",
+        "与Zhe Zhao的多目标优化背景高度匹配",
+        "提供前沿研究平台和顶尖导师资源",
+        "有利于建立国际学术网络"
+      ],
+      "cons": [
+        "竞争极其激烈，录取难度大",
+        "可能需要适应美国学术文化",
+        "研究压力可能较大"
+      ],
+      "best_for": "追求学术卓越、希望在优化算法理论领域做出突破性贡献的研究者"
+    },
+    {
+      "option_id": "us_mit_csail_ai_optimization",
+      "brief": "结合Zhe Zhao的U2E系统开发经验，在MIT CSAIL探索自动化算法设计与底层优化问题。",
+      "pros": [
+        "与自动算法进化系统经验直接相关",
+        "可深化矩阵乘法等底层优化研究",
+        "有机会将学术成果转化为实际应用",
+        "斯坦福合作经历有助于适应顶尖研究环境"
+      ],
+      "cons": [
+        "研究方向可能较为专精",
+        "需要平衡理论创新与实际应用",
+        "可能面临高强度研究节奏"
+      ],
+      "best_for": "希望在自动化算法设计和底层优化领域深耕的学术研究者"
+    },
+    {
+      "option_id": "us_mit_csail_ai_optimization",
+      "brief": "利用Eureka论文撰写系统经验，在MIT CSAIL推动AI辅助科研方法论的发展与创新。",
+      "pros": [
+        "可扩展Eureka系统的研究应用",
+        "结合AI与科研工作流的独特优势",
+        "有利于发表高影响力方法论论文",
+        "与现有研究经历形成良好衔接"
+      ],
+      "cons": [
+        "相对新兴的研究方向，成熟度较低",
+        "可能需要跨学科合作能力",
+        "成果评估标准可能不够明确"
+      ],
+      "best_for": "对AI辅助科研方法论感兴趣、希望推动科研范式变革的创新者"
+    },
+    {
+      "option_id": "us_mit",
+      "brief": "在MIT其他相关院系或实验室探索跨学科研究机会，拓展AI优化在更广泛领域的应用。",
+      "pros": [
+        "MIT整体学术环境优越，资源丰富",
+        "提供跨学科合作的可能性",
+        "可根据兴趣灵活选择研究方向",
+        "有利于建立多元化的学术背景"
+      ],
+      "cons": [
+        "研究方向可能不够聚焦",
+        "需要主动寻找合适的导师和项目",
+        "竞争同样激烈，定位可能不明确"
+      ],
+      "best_for": "希望保持研究灵活性、探索AI优化在不同领域交叉应用的研究者"
+    },
+    {
+      "option_id": "china_alibaba_damo_autosys",
+      "brief": "在阿里巴巴达摩院AutoML团队将学术研究成果转化为工业级自动化系统，推动实际应用落地。",
+      "pros": [
+        "直接应用自动算法进化系统经验",
+        "工业界资源丰富，实践机会多",
+        "研究成果可快速转化为产品",
+        "国内发展前景广阔，职业路径清晰"
+      ],
+      "cons": [
+        "学术自由度可能相对受限",
+        "研究方向更偏向应用而非理论",
+        "可能需要适应企业研发节奏"
+      ],
+      "best_for": "希望将AI优化技术产业化、追求技术落地应用的实践型人才"
+    }
+  ],
+  "gen_stats": [
+    {
+      "gen": 0,
+      "avgs": [
+        8.21,
+        8.36,
+        7.5,
+        8.36,
+        7.5,
+        6.71,
+        6.43,
+        7.93,
+        6.79,
+        7.57,
+        8.43
+      ]
+    },
+    {
+      "gen": 1,
+      "avgs": [
+        8.21,
+        8.07,
+        8.0,
+        8.57,
+        7.21,
+        6.5,
+        6.57,
+        7.93,
+        7.21,
+        7.5,
+        8.5
+      ]
+    },
+    {
+      "gen": 2,
+      "avgs": [
+        8.64,
+        8.71,
+        8.79,
+        9.07,
+        8.43,
+        6.07,
+        7.21,
+        8.43,
+        7.14,
+        8.5,
+        9.43
+      ]
+    },
+    {
+      "gen": 3,
+      "avgs": [
+        9.36,
+        9.36,
+        8.93,
+        9.14,
+        8.64,
+        6.29,
+        6.93,
+        8.64,
+        7.29,
+        9.36,
+        9.71
+      ]
+    },
+    {
+      "gen": 4,
+      "avgs": [
+        9.21,
+        9.36,
+        8.93,
+        9.07,
+        8.57,
+        6.29,
+        6.93,
+        8.36,
+        6.93,
+        9.29,
+        9.64
+      ]
+    },
+    {
+      "gen": 5,
+      "avgs": [
+        9.0,
+        9.14,
+        8.79,
+        9.0,
+        8.36,
+        6.5,
+        6.86,
+        8.36,
+        6.93,
+        8.93,
+        9.43
+      ]
+    }
+  ]
+}
