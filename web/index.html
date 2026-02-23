@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MOEA/D 通用预测系统</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root { --bg: #0f1419; --card: #1a2332; --text: #e6edf3; --muted: #8b949e; --accent: #58a6ff; --success: #3fb950; --warn: #d29922; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.5; }
+    .container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+    h1 { font-size: 1.4rem; color: var(--accent); margin-bottom: 0.25rem; }
+    .sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 1rem; }
+    .card { background: var(--card); border-radius: 8px; padding: 1rem; margin-bottom: 1rem; border: 1px solid #30363d; }
+    .card h2 { font-size: 0.95rem; margin-bottom: 0.75rem; color: var(--accent); }
+    label { display: block; color: var(--muted); font-size: 0.8rem; margin-bottom: 0.25rem; }
+    input, textarea, select { width: 100%; padding: 0.5rem; background: #0d1117; border: 1px solid #30363d; border-radius: 6px; color: var(--text); font-size: 0.9rem; }
+    textarea { min-height: 100px; resize: vertical; }
+    .row { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+    .row input { flex: 1; }
+    .btn { padding: 0.5rem 1rem; background: var(--accent); color: #000; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.9rem; }
+    .btn:hover { opacity: 0.9; }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn.secondary { background: #30363d; color: var(--text); }
+    .btn.danger { background: #da3633; color: #fff; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th, td { padding: 0.5rem; text-align: left; border-bottom: 1px solid #30363d; }
+    th { color: var(--muted); font-weight: 500; }
+    tr:hover { background: rgba(88,166,255,0.08); }
+    .score { font-weight: 600; }
+    .score.hi { color: var(--success); }
+    .score.lo { color: var(--warn); }
+    .detail { display: none; background: #161b22; padding: 0.75rem; margin-top: 0.25rem; border-radius: 6px; font-size: 0.8rem; }
+    .detail.show { display: block; }
+    .run-log { max-height: 180px; overflow-y: auto; font-family: monospace; font-size: 0.75rem; background: #0d1117; padding: 0.5rem; border-radius: 6px; white-space: pre-wrap; margin-top: 0.5rem; }
+    .chart-wrap { height: 240px; }
+    .obj-item { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; align-items: center; }
+    .obj-item input:first-child { flex: 0 0 100px; }
+    .obj-item input:nth-child(2) { flex: 1; }
+    .config-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.5rem; }
+    .config-row label { margin: 0; }
+    .config-row input { margin-top: 0.2rem; }
+    .preset { margin-bottom: 0.5rem; }
+    .preset .btn { margin-right: 0.25rem; margin-bottom: 0.25rem; }
+    .err { color: #f85149; }
+    .muted { color: var(--muted); }
+    .ok { color: var(--success); }
+    code { background: #30363d; padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.85em; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .tab { padding: 0.5rem 1rem; background: var(--card); border-radius: 6px; cursor: pointer; color: var(--muted); }
+    .tab:hover { color: var(--text); }
+    .tab.active { background: var(--accent); color: #000; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MOEA/D 通用预测系统</h1>
+    <p class="sub">输入目标、现有信息、超参数 → Pareto 最优预测</p>
+
+    <div class="tabs">
+      <span class="tab active" data-tab="input">输入配置</span>
+      <span class="tab" data-tab="results">预测结果</span>
+    </div>
+
+    <!-- 输入配置 -->
+    <section id="input" class="panel active">
+      <div class="card">
+        <h2>1. 现有信息 / 背景（Profile）</h2>
+        <label>描述预测主体的情况、约束、偏好（用于生成选项和评分）</label>
+        <textarea id="profile" placeholder="例如：Zhe Zhao，USTC+CityU 博士。MOEA/进化算法背景，U2E 自动算法进化系统，Eureka 科研写作系统。NIPS/ICML 一作..."></textarea>
+      </div>
+
+      <div class="card">
+        <h2>2. 预测领域（Domain）</h2>
+        <label>选项所属领域，用于引导 LLM 生成</label>
+        <input id="domain" placeholder="例如：博后职业选择、科研课题、创业方向、研究生三年发展路径" value="博后职业选择">
+      </div>
+
+      <div class="card">
+        <h2>2.5. 硬约束（可选）</h2>
+        <label>所有选项必须满足的条件，违反者将被剔除或严重降分（每行一条）</label>
+        <textarea id="constraints" placeholder="例如：不因新机会破坏与当前学长的合作"></textarea>
+      </div>
+
+      <div class="card">
+        <h2>3. 优化目标（Objectives）</h2>
+        <label>每个目标需有名称和定义（0-10 分评估）</label>
+        <div class="preset">
+          <button class="btn secondary" onclick="loadPreset('career')">职业预设</button>
+          <button class="btn secondary" onclick="loadPreset('research')">科研预设</button>
+          <button class="btn secondary" onclick="loadPreset('graduate')">研究生发展</button>
+        </div>
+        <div id="objectivesList"></div>
+        <button class="btn secondary" onclick="addObjective()" style="margin-top: 0.5rem;">+ 添加目标</button>
+      </div>
+
+      <div class="card">
+        <h2>4. 超参数（可选）</h2>
+        <div class="config-row">
+          <div>
+            <label>种群 pop_size</label>
+            <input type="number" id="popSize" value="10" min="6" max="20">
+          </div>
+          <div>
+            <label>代数 n_gens</label>
+            <input type="number" id="nGens" value="3" min="1" max="10">
+          </div>
+          <div>
+            <label>交叉对数</label>
+            <input type="number" id="nCrossover" value="4" min="2" max="10">
+          </div>
+          <div>
+            <label>变异率</label>
+            <input type="number" id="pMut" value="0.3" min="0" max="1" step="0.1">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>5. 运行</h2>
+        <p class="sub" style="margin-bottom: 0.5rem;">需 DEEPSEEK_API_KEY（在项目根目录 .env 中配置，或 export 环境变量）。约 3–8 分钟。请通过 <code>http://127.0.0.1:5001</code> 访问</p>
+        <div class="row">
+          <button class="btn" id="runBtn" onclick="startPredict()">启动预测</button>
+          <span id="runStatus"></span>
+        </div>
+        <div id="runLog" class="run-log" style="display:none"></div>
+      </div>
+    </section>
+
+    <!-- 预测结果 -->
+    <section id="results" class="panel">
+      <div class="card">
+        <h2>Pareto 最优选项</h2>
+        <div id="optionsTable"></div>
+      </div>
+      <div class="card">
+        <h2>演化曲线</h2>
+        <div class="chart-wrap"><canvas id="evoChart"></canvas></div>
+      </div>
+      <div class="card">
+        <h2>各代均值</h2>
+        <div id="genStatsTable"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    let chartInstance = null;
+    const API_BASE = window.location.protocol === "file:" ? "http://127.0.0.1:5001" : "";
+    const PRESETS = {
+      career: [
+        { name: "契合", definition: "与背景匹配" },
+        { name: "影响力", definition: "顶会顶刊、领域认可" },
+        { name: "可行", definition: "落地概率" },
+        { name: "Agent", definition: "与 AI 趋势契合" },
+        { name: "上限", definition: "职业/认知天花板" },
+      ],
+      research: [
+        { name: "知识价值", definition: "对科学的贡献" },
+        { name: "长尾度", definition: "研究稀缺性" },
+        { name: "前沿性", definition: "新颖突破程度" },
+        { name: "可行性", definition: "可开展程度" },
+        { name: "合理性", definition: "理论依据" },
+      ],
+      graduate: [
+        { name: "稳定性", definition: "保下限：至少 2 篇 CCF-A 一作或进大厂人才计划" },
+        { name: "上限", definition: "海外博士、跟学长创业/任教、最终回国" },
+        { name: "自主性", definition: "有可支配收入覆盖日常开支" },
+        { name: "交涉范围", definition: "不因新机会破坏与当前学长的合作（硬约束）" },
+      ],
+    };
+    const CAREER_PROFILE = `Zhe Zhao，USTC+CityU HK 联合培养博士。
+· 师从张青富系统学习多目标优化与进化算法。
+· 开发 U2E 自动算法进化系统，在组学、PDE 等领域超越人类专家。
+· 斯坦福期间主导 Eureka 科研论文撰写系统。
+· 一作：NIPS 2024/2025, ICML 2024/2025, AAAI 2024/2025 等。`;
+
+    const GRADUATE_PROFILE = `王凡夫，兰州大学大四，保研至中科大。
+· 已有 2 篇 NeurIPS（CCF-A）合作论文。
+· 优势：诚实、负责、合作意识强。
+· 劣势：思维偏窄、论文读得少、有时想法空洞、过于谨慎。
+· 规划：研究生三年 → 海外博士 → 山东高校任教；备选大厂人才计划。`;
+
+    function addObjective(name = "", def = "") {
+      const div = document.getElementById("objectivesList");
+      const n = div.children.length + 1;
+      const el = document.createElement("div");
+      el.className = "obj-item";
+      el.innerHTML = `<input placeholder="目标${n}" value="${name}">
+        <input placeholder="定义（可选）" value="${def}">
+        <button class="btn danger" onclick="this.parentElement.remove()">删</button>`;
+      div.appendChild(el);
+    }
+
+    function loadPreset(p) {
+      document.getElementById("objectivesList").innerHTML = "";
+      (PRESETS[p] || []).forEach(o => addObjective(o.name, o.definition));
+      if (p === "career") document.getElementById("profile").value = CAREER_PROFILE;
+      if (p === "graduate") {
+        document.getElementById("profile").value = GRADUATE_PROFILE;
+        document.getElementById("domain").value = "研究生三年发展路径";
+        document.getElementById("constraints").value = "不因新机会破坏与当前学长的合作";
+      }
+    }
+
+    function getObjectives() {
+      const items = [];
+      document.querySelectorAll("#objectivesList .obj-item").forEach(el => {
+        const ins = el.querySelectorAll("input");
+        const name = ins[0]?.value?.trim();
+        if (name) items.push({ name, definition: ins[1]?.value?.trim() || "" });
+      });
+      return items;
+    }
+
+    function getConfig() {
+      return {
+        pop_size: parseInt(document.getElementById("popSize").value) || 10,
+        n_gens: parseInt(document.getElementById("nGens").value) || 3,
+        n_crossover_pairs: parseInt(document.getElementById("nCrossover").value) || 4,
+        p_mutation: parseFloat(document.getElementById("pMut").value) || 0.3,
+      };
+    }
+
+    async function startPredict() {
+      const profile = document.getElementById("profile").value.trim();
+      const domain = document.getElementById("domain").value.trim();
+      const objectives = getObjectives();
+      if (!profile) { alert("请填写现有信息"); return; }
+      if (!domain) { alert("请填写预测领域"); return; }
+      if (!objectives.length) { alert("请添加至少一个目标"); return; }
+
+      const btn = document.getElementById("runBtn");
+      const status = document.getElementById("runStatus");
+      const logEl = document.getElementById("runLog");
+      btn.disabled = true;
+      status.textContent = "启动中...";
+      logEl.style.display = "block";
+      logEl.textContent = "";
+      try {
+        const r = await fetch(API_BASE + "/api/predict", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            profile,
+            domain,
+            objectives,
+            constraints: document.getElementById("constraints").value.trim() || undefined,
+            config: getConfig(),
+          }),
+        });
+        const text = await r.text();
+        let j;
+        try { j = JSON.parse(text); } catch (_) {
+          throw new Error("接口返回异常，请通过 http://127.0.0.1:5001 访问且已执行 python app.py");
+        }
+        if (!j.ok) throw new Error(j.error || "启动失败");
+        status.textContent = "运行中（约 3–8 分钟）...";
+        status.className = "";
+        pollStatus(logEl, status, btn);
+      } catch (e) {
+        status.textContent = "错误: " + e.message;
+        status.className = "err";
+        btn.disabled = false;
+      }
+    }
+
+    function pollStatus(logEl, statusEl, btn) {
+      const f = async () => {
+        const r = await fetch(API_BASE + "/api/run/status");
+        const text = await r.text();
+        let j;
+        try { j = JSON.parse(text); } catch (_) { j = { running: false, error: "接口异常" }; }
+        if (j.log?.length) logEl.textContent = j.log.join("\n");
+        if (j.running) {
+          setTimeout(f, 2000);
+          return;
+        }
+        btn.disabled = false;
+        if (j.error) {
+          statusEl.textContent = "失败: " + j.error;
+          statusEl.className = "err";
+        } else {
+          statusEl.textContent = "完成！";
+          statusEl.className = "ok";
+          switchTab("results");
+          loadResults();
+        }
+      };
+      f();
+    }
+
+    function switchTab(name) {
+      document.querySelectorAll(".tab").forEach(t => {
+        t.classList.toggle("active", t.dataset.tab === name);
+      });
+      document.querySelectorAll(".panel").forEach(p => {
+        p.classList.toggle("active", p.id === name);
+      });
+    }
+
+    document.querySelectorAll(".tab").forEach(t => {
+      t.onclick = () => switchTab(t.dataset.tab);
+    });
+
+    async function loadResults() {
+      try {
+        const r = await fetch(API_BASE + "/api/results");
+        const text = await r.text();
+        let j;
+        try { j = JSON.parse(text); } catch (_) {
+          document.getElementById("optionsTable").innerHTML = '<span class="muted">请确保 Flask 已启动：python app.py</span>';
+          return;
+        }
+        if (!j.ok) {
+          document.getElementById("optionsTable").innerHTML = '<span class="muted">' + (j.error || "无结果，请先运行预测") + '</span>';
+          return;
+        }
+        renderResults(j.data);
+      } catch (e) {
+        document.getElementById("optionsTable").innerHTML = '<span class="err">加载失败: ' + e.message + '</span>';
+      }
+    }
+
+    function renderResults(data) {
+      const opts = data.evaluated_options || [];
+      if (!opts.length) {
+        document.getElementById("optionsTable").innerHTML = '<span class="muted">无选项数据</span>';
+        document.getElementById("genStatsTable").innerHTML = "";
+        return;
+      }
+      const objNames = (data.objectives || []).map(o => o.name);
+      const ranking = data.pareto_ranking || [];
+      const rankMap = {};
+      ranking.forEach((id, i) => { if (!rankMap[id]) rankMap[id] = i + 1; });
+      opts.forEach(o => {
+        o._rank = rankMap[o.option_id] || 999;
+        o._pareto = o.pareto_front || false;
+      });
+      opts.sort((a, b) => a._rank - b._rank);
+
+      let html = '<table><thead><tr><th>#</th><th>选项</th><th>概述</th>';
+      objNames.forEach(n => { html += `<th>${n}</th>`; });
+      html += "</tr></thead><tbody>";
+      opts.forEach((o, i) => {
+        const c = o.content || {};
+        const s = o.scores || [];
+        const sc = j => (s[j] != null ? (s[j] * 10).toFixed(0) : "-");
+        const scClass = j => ((s[j] || 0) >= 0.8 ? "hi" : (s[j] || 0) < 0.6 ? "lo" : "");
+        html += `<tr onclick="document.getElementById('d${i}').classList.toggle('show')">
+          <td>${o._pareto ? "★" + o._rank : "-"}</td>
+          <td>${o.option_id}</td>
+          <td>${(c.summary || c.detail || "-").slice(0, 60)}</td>`;
+        objNames.forEach((_, j) => {
+          html += `<td class="score ${scClass(j)}">${sc(j)}</td>`;
+        });
+        html += `</tr><tr><td colspan="${3 + objNames.length}" style="padding:0;border:none">
+          <div class="detail" id="d${i}">
+            <p><b>详情:</b> ${c.detail || "-"}</p>
+            <p><b>优势:</b> ${(c.pros || []).join(" | ")}</p>
+            <p><b>劣势:</b> ${(c.cons || []).join(" | ")}</p>
+          </div>
+        </td></tr>`;
+      });
+      html += "</tbody></table>";
+      document.getElementById("optionsTable").innerHTML = html;
+
+      const stats = data.gen_stats || [];
+      if (stats.length && objNames.length) {
+        const ctx = document.getElementById("evoChart").getContext("2d");
+        if (chartInstance) chartInstance.destroy();
+        const cols = ["#58a6ff", "#3fb950", "#d29922", "#a371f7", "#39c5cf"];
+        chartInstance = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels: stats.map(s => "Gen " + s.gen),
+            datasets: objNames.slice(0, 5).map((n, i) => ({
+              label: n,
+              data: stats.map(s => s.avgs[i]),
+              borderColor: cols[i % cols.length],
+              fill: false,
+              tension: 0.2,
+            })),
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { y: { min: 5, max: 10 } },
+            plugins: { legend: { position: "top" } },
+          },
+        });
+      }
+
+      let tbl = "<table><tr><th>代数</th>";
+      objNames.forEach(n => { tbl += "<th>" + n + "</th>"; });
+      tbl += "</tr>";
+      stats.forEach(s => {
+        tbl += "<tr><td>" + s.gen + "</td>";
+        (s.avgs || []).forEach(a => { tbl += "<td>" + a.toFixed(1) + "</td>"; });
+        tbl += "</tr>";
+      });
+      tbl += "</table>";
+      document.getElementById("genStatsTable").innerHTML = tbl;
+    }
+
+    loadPreset("career");
+    loadResults();
+  </script>
+</body>
+</html>

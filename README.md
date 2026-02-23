@@ -2,6 +2,8 @@
 
 > 用**大模型 + 多目标进化算法**做两件事：① 长尾科研知识进化 ② 博后/职业选择优化
 
+**隐私说明**：`.env`、演化结果 JSON/HTML/图表 已加入 `.gitignore`，不会推送。请勿将 API Key 或含个人信息的 profile 提交到仓库。
+
 ---
 
 ## 一眼看懂
@@ -48,6 +50,59 @@ export DEEPSEEK_API_KEY="your-key"
 python moead_career_exp.py      # 运行演化（约 8 分钟，5 代）
 python moead_career_pdf.py      # 生成 PDF 报告
 ```
+
+### 通用预测系统（Web + 引擎）
+
+通用 MOEA/D 引擎 `moead_engine.py`：可配置目标、Profile、硬约束、超参数；支持 Web 界面或命令行脚本调用。
+
+#### 快速开始
+
+```bash
+# 1. 配置 API Key（任选其一，写入 .env）
+cp .env.example .env
+# 编辑 .env：
+#   OPENROUTER_API_KEY=xxx    # 推荐，可调用 DeepSeek/OpenAI 等
+#   或 DEEPSEEK_API_KEY=xxx
+#   或 OPENAI_API_KEY=xxx
+
+# 2. 安装并启动
+pip install -r requirements.txt
+python app.py
+# 浏览器打开 http://127.0.0.1:5001
+```
+
+#### 功能
+
+| 功能 | 说明 |
+|------|------|
+| **多目标** | 自定义目标名称与定义，0–10 分评估 |
+| **硬约束** | 所有选项必须满足，违反者降分/剔除 |
+| **预设** | 职业、科研、研究生发展（含分年路径提示） |
+| **API** | 优先 OpenRouter → DeepSeek → OpenAI，模型可配置 |
+
+#### 命令行演化脚本
+
+```bash
+# 研究生发展路径（自定义 profile 请修改脚本内 PROFILE）
+python run_fanfu_evolution.py
+
+# 博后职业选择（赵哲预设）
+python run_zhe_evolution.py
+
+# 生成 Pareto 表格 HTML
+python gen_pareto_table.py
+
+# 绘制演化曲线
+python plot_fanfu_results.py
+```
+
+#### Web 输入
+
+- **Profile**：背景、约束、偏好
+- **Domain**：预测领域（如博后选择、研究生三年发展路径）
+- **硬约束**：每行一条，必满足
+- **目标**：名称 + 定义
+- **超参数**：种群、代数、交叉对数、变异率
 
 ### 产出
 
@@ -105,16 +160,22 @@ python moead_cs_exp.py          # CS + 研究方案
 ```
 moead-research/
 ├── README.md                   本说明
+├── .env.example                API Key 模板（复制为 .env 使用，勿提交）
+├── requirements.txt
 │
-├── # ═══ 博后职业选择 ═══
+├── # ═══ 通用预测系统 ═══
+├── moead_engine.py             通用 MOEA/D 引擎（目标/约束/archive/all_options）
+├── app.py                      Web API（Flask）
+├── web/index.html              前端：表单 + 结果 + Pareto 排序
+├── run_fanfu_evolution.py      研究生发展路径命令行演化
+├── run_zhe_evolution.py        博后职业选择命令行演化
+├── gen_pareto_table.py         从 JSON 生成 Pareto 表格 HTML
+├── plot_fanfu_results.py       绘制演化曲线与雷达图
+│
+├── # ═══ 博后/职业选择 ═══
 ├── moead_career_exp.py         主程序（5 代，扩展变异）
 ├── moead_career_pdf.py         PDF 报告生成
-├── moead_career_results.json   运行结果
-├── moead_career_report.md      文本报告
 ├── career_logs/                每代种群日志
-│   ├── gen_00_population.json
-│   ├── gen_01_population.json
-│   └── ...
 │
 ├── # ═══ 科研知识进化 ═══
 ├── moead_cs_research.py        v1 基础
@@ -134,10 +195,12 @@ moead-research/
 ## 依赖
 
 ```bash
-pip install openai anthropic numpy reportlab
+pip install -r requirements.txt
+# openai, python-dotenv, numpy, flask, reportlab, anthropic
 ```
 
-- **openai**：DeepSeek / OpenAI
-- **anthropic**：Claude
+- **openai**：DeepSeek / OpenAI / OpenRouter 兼容
+- **python-dotenv**：加载 .env
 - **numpy**：权重、Pareto
+- **flask**：Web API
 - **reportlab**：PDF
